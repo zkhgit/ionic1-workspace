@@ -1,0 +1,40 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title ng-bind="TAB.public.science.title"></ion-nav-title>
+    </ion-nav-bar>
+
+    <!-- 科技动态 -->
+    <ion-content overflow-scroll="false" has-bouncing="true">
+      
+        <ion-refresher
+          pulling-text="读取"
+          pulling-icon="ion-android-refresh"
+          refreshing-text="智能读取中"
+          on-refresh="doRefresh()" spinner="ripple">
+        </ion-refresher>
+
+        <ion-list>
+            <ion-item class="item item-icon-right" 
+                ng-repeat = "acticle in dataList" 
+                ui-sref = "{{TAB.public.acticle.name}}({id: acticle.id})">
+
+                <h2 style="font-size:14px;margin-left:10px;">{{acticle.title}}</h2>
+                <span style="font-size:10px;color:#0f0f0f;margin-left:10px;">{{acticle.createDate | limitTo:10}}</span>
+                <i class="icon ion-ios-arrow-right" style="font-size: 20px;"></i>
+            </ion-item>
+        </ion-list>
+
+        <!-- 暂无数据 -->
+        <tom-not-list is-flag='dataList.length>0'></tom-not-list>
+        <!-- 暂无数据 -->
+
+        <!--上拉加载-->
+        <div class="text-center" ng-if="!infinite_scroll_flag && dataList.length>0" style="line-height:25px; font-size:10px;color:#0f0f0f">已经到底了！</div>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="infinite_scroll_flag" spinner="dots"></ion-infinite-scroll> 
+        <!--上拉加载-->
+        
+    </ion-content>
+</ion-view>

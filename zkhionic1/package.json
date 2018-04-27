@@ -9,8 +9,12 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
-    "cordova-android": "7.0.0",
+    "cordova-android": "^7.0.0",
+    "cordova-plugin-camera": "file:../../cordova-plugins/cordova-plugin-camera-master",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-file": "file:../../cordova-plugins/cordova-plugin-file-master",
+    "cordova-plugin-file-opener2": "file:../../cordova-plugins/cordova-plugin-file-opener2-master",
+    "cordova-plugin-file-transfer": "file:../../cordova-plugins/cordova-plugin-file-transfer-master",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -22,7 +26,11 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-camera": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-file-transfer": {}
     },
     "platforms": [
       "android"

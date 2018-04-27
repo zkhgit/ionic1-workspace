@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>科技投融资平台</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- ionic自带UI样式库 start-->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <!-- ionic自带UI样式库 end-->
+
+    <!-- 表单验证样式 start-->
+    <link rel="stylesheet" href="lib/validator/w5cValidator.css">
+    <!-- 表单验证样式 end-->
+
+    <!-- 项目中自定义的公用样式 start-->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- 项目中自定义的公用样式 end-->
+
+    <!-- 工具型JS文件 start-->
+    <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
+    <script type="text/javascript" src="lib/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/ionic-native-transitions.min.js"></script>
+      <!-- 第三方插件 start-->
+      <script type="text/javascript" src="lib/jquery-1.8.3.js"></script>
+      <script type="text/javascript" src="lib/validator/w5cValidator.js"></script>
+      <script type="text/javascript" src="lib/date/ionic-datepicker.bundle.min.js"></script>
+      <script type="text/javascript" src="lib/upload/ng-file-upload.js"></script>
+      <script type="text/javascript" src="lib/upload/ng-file-upload-shim.js"></script>
+      <script type="text/javascript" src="lib/chart/Chart.min.js"></script>
+      <script type="text/javascript" src="lib/chart/angular-chart.js"></script>
+      <!-- 第三方插件 end-->
+    <!-- 工具型JS文件 end-->
+
+    <!-- 项目中自己开发的JS代码 start-->
+        <!-- 公用、配置型JS代码 start-->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/constant.js"></script>
+        <script type="text/javascript" src="js/directive.js"></script>
+        <script type="text/javascript" src="js/factory.js"></script>
+        <script type="text/javascript" src="js/filter.js"></script>
+        <script type="text/javascript" src="js/provider.js"></script>
+        <script type="text/javascript" src="js/service.js"></script>
+        <script type="text/javascript" src="js/value.js"></script>
+        <!-- 公用、配置型JS代码 end-->
+
+        <!-- 针对于对应模块开发JS代码(包含路由配置、controller、directives方法等) start-->
+        <script type="text/javascript" src="templates/tabs.js"></script>
+            <!-- 公共门户 start-->
+            <script type="text/javascript" src="templates/public/service.js"></script>
+            <script type="text/javascript" src="templates/public/acticle.js"></script>
+            <script type="text/javascript" src="templates/public/notice.js"></script>
+            <script type="text/javascript" src="templates/public/news.js"></script>
+            <script type="text/javascript" src="templates/public/science.js"></script>
+            <script type="text/javascript" src="templates/public/policy.js"></script>
+            <script type="text/javascript" src="templates/public/introduction.js"></script>
+            <!-- 公共门户 end-->
+        <!-- 针对于对应模块开发JS代码(包含路由配置、controller、directives方法等) end-->
+
+    <!-- 项目中自己开发的JS代码 end-->
+  </head>
+  <body ng-app="app">
+    <ion-nav-view><ion-view></ion-view></ion-nav-view>
+  </body>
+</html>
