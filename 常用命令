@@ -1,0 +1,41 @@
+// 安装cnpm组件（镜像淘宝）
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+// npm指向淘宝镜像（临时指向）
+npm --registry https://registry.npm.taobao.org install express
+
+// npm指向淘宝镜像（永久指向）（推荐）
+npm config set registry https://registry.npm.taobao.org 
+
+// 安装cordova ionic
+npm install -g cordova ionic 
+
+// 更新cordova ionic
+npm update -g cordova ionic 
+
+// 查看cordova详细信息（包括所有可用版本号）
+npm info cordova 
+
+// 清除npm缓存
+npm cache clean  
+
+// 创建ionic1的项目
+ionic start xxx --type=ionic1 
+
+// 安装安卓平台
+ionic cordova platform add android 或 cordova platform add android 或 cordova platform add android@6.3.0 
+
+// 移除安卓平台
+ionic cordova platform rm android 或 cordova platform rm android 
+
+// 编译安卓apk
+ionic cordova build android 或 cordova build android 
+
+// 在模拟器中运行运行项目apk 
+ionic cordova emulate android 或 cordova emulate android 
+
+// 安装到手机运行（手机通过USB连接到电脑，且开启USB调试模式
+ionic cordova run android 或 cordova run android 
+
+// 查看ionic版本
+ionic -v  
