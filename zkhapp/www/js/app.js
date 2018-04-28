@@ -32,12 +32,12 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
 
     /** 2、调用原生页面切换效果******************************************************/
     $ionicNativeTransitionsProvider.setDefaultOptions({
-        duration: 300, // 页面切换动画时长（毫秒）
+        duration: 290, // 页面切换动画时长（毫秒）
         slowdownfactor: 4, // 重叠视图（更高的数字是更多）或没有重叠（1），默认为4。
         iosdelay: -1, // 等待iOS webview在动画开始前更新, 默认 -1
         androiddelay: -1, // 与上面相同，但对于Android, 默认 -1
         winphonedelay: -1, // 与上面相同，但对于Windows Phone，默认为 -1,
-        fixedPixelsTop: 0, // 默认页眉的像素数，默认值为0（IOS和Android）
+        fixedPixelsTop: 44, // 默认页眉的像素数，默认值为0（IOS和Android）
         fixedPixelsBottom: 0,// 你的固定页脚的像素数（FI标签栏），默认为0（iOS和Android）
         triggerTransitionEvent: '$ionicView.afterEnter', // internal ionic-native-transitions option
         backInOppositeDirection: true // 接管默认的后台转换和状态回转换，使用相反的方向转换回去。
@@ -188,17 +188,18 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
         // cordova插件准备就绪（手机环境）
         if(window.cordova){
             // 延时隐藏启动屏幕，避免短暂白屏（延时300毫秒）
-            $timeout(function(){navigator.splashscreen.hide();}, 300);
+            $timeout(function(){navigator.splashscreen.hide();}, 500);
             // 设备顶部的状态栏
             if (window.StatusBar) {
                 // android>6.0
-                // StatusBar.styleDefault(); // 状态栏默认样式，也就是电池信号黑色；
+                // StatusBar.styleDefault(); // 状态栏默认样式，也就是电池信号黑色；（测试有用）
                  StatusBar.styleLightContent(); // 状态栏内容浅色，貌似就是白色，适合深色背景；  
                 // StatusBar.styleBlackTranslucent(); // 状态栏黑色半透明，电池时间都是白色的，适合深色背景；  
                 // StatusBar.styleBlackOpaque(); // 状态栏黑色不透明，还是白色的，适合深色背景；  
-                // StatusBar.hide(); // 状态栏隐藏；  
-                // StatusBar.show(); // 状态栏显示；
-                //StatusBar.overlaysWebView(true); 使状态栏覆盖或不覆盖WebView
+                // StatusBar.hide(); // 状态栏隐藏（测试有用）；  
+                // StatusBar.show(); // 状态栏显示（测试有用）；
+                // StatusBar.overlaysWebView(true); // 使状态栏覆盖或不覆盖WebView（测试有用）
+                StatusBar.backgroundColorByHexString("#387ef5"); // 状态栏背景色（测试有用）
             }
             // 设置键盘属性
             if (Keyboard) {
@@ -225,7 +226,6 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
         // 终止Ajax请求
         if($rootScope.httpStop!=null){
             HTTP.shutdown(true); // 终止请求
-            return;
         }
         // 判断处于哪个页面时双击退出
         if($location.path() == TAB.tabs.tab.url+TAB.tabs.main.url) {
