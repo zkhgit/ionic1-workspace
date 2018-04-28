@@ -8,18 +8,20 @@ npm install -g cordova ionic //安装cordova ionic
 
 npm update -g cordova ionic //更新cordova ionic
 
+npm info cordova // 查看cordova详细信息（包括所有可用版本号）
+
 npm cache clean  //清除npm缓存
 
 ionic start xxx --type=ionic1 //创建项目
 
-ionic platform add android  //安装安卓平台
+ionic cordova platform add android 或 cordova platform add android 或 cordova platform add android@6.3.0 //安装安卓平台
 
-ionic platform rm android  //移除安卓平台
+ionic cordova platform rm android 或 cordova platform rm android //移除安卓平台
 
-ionic build android //编译安卓apk
+ionic cordova build android 或 cordova build android //编译安卓apk
 
-ionic emulate android //运行项目apk 在模拟器中运行，或安装到手机运行（手机通过USB连接到电脑，且开启USB调试模式）
+ionic emulate android //在模拟器中运行运行项目apk 
 
-ionic run android //相当于build + emulate
+ionic cordova run android 或 cordova run android //安装到手机运行（手机通过USB连接到电脑，且开启USB调试模式
  
 ionic -v  //查看版本
