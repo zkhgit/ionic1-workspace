@@ -1,0 +1,146 @@
+html,body,div,h1,h2,h3,h4,h5,p,i,label,span,a,button,textarea,input{
+    font-family: 微软雅黑, Arial, Helvetica, sans-serif;
+}
+html,body,div,H3,p,span,.input-label{
+    font-size: 14px;
+}
+
+
+/*ionic原有样式重写 --start--*/
+/*1、页面ion-content下的第一个div高度100%*/
+.scroll{
+    height: 100%;
+}
+
+/*2、<ion-nav-bar>标题字体颜色大小*/
+ion-header-bar span {
+    font-size: 16px;
+    /*color:grey;*/
+}
+
+/*3、ion-content 隐藏右侧滚动条*/
+/*.scroll-bar-v{
+  width: 1;
+}*/
+
+/*4、返回上一页按钮颜色*/
+.back-button i, .back-button > span{
+    color: white;
+}
+
+/*5、加载动画的样式*/
+.loading-container .loading{
+    /*border-radius: 15px;*/
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+    background: none;
+}
+/*ionic原有样式重写 --end--*/
+
+
+
+/*自定义样式  --start--*/
+/**正在加载*/
+.tom-hide-view > div[class~='scroll'] > div{
+    position:absolute;
+    top:40%;
+    width: 100%;
+    height: 100%;
+}
+
+/*无边框*/
+.border_none{
+	border: none;
+}
+
+/* 字体大小 *************/
+.font-size_16{
+  font-size: 16px;
+}
+.font-size_18{
+  font-size: 18px;
+}
+/* 字体大小 *************/
+
+/* 外边距 ***************/
+.margin-top_44{
+  margin-top: 44px;
+}
+
+.margin-bottom_44{
+  margin-bottom: 44px;
+}
+/* 外边距 ***************/
+
+.height_54{
+    min-height: 54px;
+}
+
+/*页面列表【暂无数据】时的div样式*/
+.tom_not_list{
+    padding: 100px 0 100px 0; 
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 背景 ****************/
+.bg_E6E6E6{
+  background: #E6E6E6;
+}
+
+/*背景透明*/
+.bg_transparent{
+    background: transparent;
+}
+/* 背景 ****************/
+
+/* 图片、文字垂直居中 ***************************/
+.imgtxt_align_middle *{ vertical-align:middle; }
+/* 图片、文字垂直居中 ***************************/
+
+.dis_none{
+    display: none;
+}
+.text-center{
+    text-align: center;
+}
+/*自定义样式  --end--*/
+
+
+/*自定义代码块*/
+/*modal动画效果*/
+.slide-in-right {
+   -webkit-transform: translateX(-100%);
+   transform: translateX(100%); 
+}
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+   transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}      
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+   -webkit-transform: translateX(0);
+   transform: translateX(0); 
+} 
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+   transition: all ease-in-out 250ms; 
+}
+.slide-in-left {
+   -webkit-transform: translateX(-100%);
+   transform: translateX(100%); 
+}
+.slide-in-left.ng-enter, .slide-in-left > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+   transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}      
+.slide-in-left.ng-enter-active, .slide-in-left > .ng-enter-active {
+   -webkit-transform: translateX(0);
+   transform: translateX(0); 
+} 
+.slide-in-left.ng-leave, .slide-in-left > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+   transition: all ease-in-out 250ms; 
+}
+/*自定义代码块*/ 
+
+ 

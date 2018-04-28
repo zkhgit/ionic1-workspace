@@ -1,0 +1,28 @@
+
+<ion-view>
+  <style>
+    #introduction_content {
+      background: #E6E6E6;
+    }
+    .introduction_divcontent {
+      line-height: 30px;
+      
+    }
+  </style>
+
+  <ion-nav-bar class="bar-positive light">
+    <ion-nav-back-button></ion-nav-back-button>
+    <ion-nav-title ng-bind="TAB.public.introduction.title"></ion-nav-title>
+  </ion-nav-bar>
+
+  <!-- 文章内容 -->
+  <ion-content id="introduction_content" class="padding" overflow-scroll="false" has-bouncing="true">
+
+    <!-- 主内容区 -->            
+        <!-- 内容 -->
+        <div id="mainContent" class="introduction_divcontent" ng-bind-html="introduction.content | trustHtml" style="text-indent:28px;"></div>
+        <!-- 内容 -->
+    <!-- 主内容区 -->
+        
+  </ion-content>
+</ion-view>
