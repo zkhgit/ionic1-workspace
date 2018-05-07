@@ -11,26 +11,26 @@ angular.module('public_notice_ctrl',[])
 	            }
 	        });
     })
-    .controller('notice', function($scope, noticeService, publicService){
+    .controller('notice', function($scope, noticeService, commonService){
         // 初始化加载
         noticeService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             $scope.filter.pageNo = 1;
-            publicService.doRefresh($scope);
+            commonService.doRefresh($scope);
         };
         // 上拉加载
         $scope.loadMore = function(){
-            publicService.loadMore($scope);
+            commonService.loadMore($scope);
         };
     })
-    .service('noticeService', function(publicService){
+    .service('noticeService', function(commonService, ACTION){
         this.loading = function(scope){
             // 设置初始化参数
-            publicService.init(scope);
-            // 设置栏目类型
-            scope.filter.categoryId = 201;
+            commonService.init(scope);
+            // 设置查询条件（栏目类型）
+            var data = {categoryId: 201};
             // 获取列表
-            publicService.doRefresh(scope,true);
+            commonService.isRefresh(scope, ACTION.public.list, data);
         };
     })

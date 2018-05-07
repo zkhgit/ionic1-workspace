@@ -18,6 +18,13 @@
   <!-- 文章内容 -->
   <ion-content id="introduction_content" class="padding" overflow-scroll="false" has-bouncing="true">
 
+    <ion-refresher
+      pulling-text="读取"
+      pulling-icon="ion-android-refresh"
+      refreshing-text="智能读取中"
+      on-refresh="doRefresh()" spinner="ripple">
+    </ion-refresher>
+    
     <!-- 主内容区 -->            
         <!-- 内容 -->
         <div id="mainContent" class="introduction_divcontent" ng-bind-html="introduction.content | trustHtml" style="text-indent:28px;"></div>

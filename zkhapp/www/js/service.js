@@ -150,108 +150,162 @@ angular.module('service',[])
         };
     })
     // 公用工具服务
-    .service('commonService', function($timeout, TAB, HTTP, ACTION, CACHE, JSONBY){
+    .service('commonService', function($timeout, $rootScope, $ionicPopup, $ionicScrollDelegate, TAB, HTTP, ACTION, CACHE, JSONBY, SCREEN, SETTING){
         // 初始化参数
-        this.init = function init(scope){
-            scope.TAB = TAB; // 页面跳转配置
+        this.init = function(scope){
+            init(scope);
+        }
+        var init = function(scope){
+            scope.data = {}; // 页面一般对象
             scope.dataList = []; // 数据集
             scope.pageNo = 2;  // 分页
-            scope.infinite_scroll_flag = true; // 上拉加载
+            $rootScope.refreshPage = false; // 是否刷新数据列表
+
+            // 查询条件对象
+            scope.filter = {};
+            scope.filter.data = {};
+            try {
+                scope.filter.userId = CACHE.get('userInfo').userId;
+            } catch (error) {
+                scope.filter.userId = null;
+            }
+
+            scope.TAB = TAB;
+            scope.SCREEN = SCREEN;
         };
 
         /**
          * 查询数据列表，公用数据拉取方法
          * scope : 作用域
-         * url : API接口
          * loading : 是否显示加载动画
+         * waitTime : 延迟请求时间（单位：毫秒）
          */
-        this.doRefresh = function(scope, url, loading){
-            HTTP.send({
-                url: url,
-                data: {pageNo: 1, id: scope.filter.id, data: scope.filter.data},// id:当前用户id
-                method: 'post',
-                headers: true,
-                loading: loading
-            }).then(function(data){
-                 if(data.data!=null){
-                    scope.dataList = data.data.obj.list==null?[]:data.data.obj.list;
-                    scope.count = data.data.obj.count; // 总记录数目
-                    scope.numberPage = scope.dataList.length; // 当前记录数
-                    
-                    if(data.data.obj.pageNo*data.data.obj.pageSize>=data.data.obj.count){    
-                        // 数据已加载完，接着执行剩下的操作
-                        scope.infinite_scroll_flag = false;
-                    }
-                    // 暂无记录、分页参数显示
-                    // 上拉加载广播
-                    setTimeout(function() {
-                        if(scope.dataList.length==0){
-                            setTimeout(function() {
-                                scope.myjl = false;
-                            }, 1000);
+        this.doRefresh = function(scope, loading, waitTime){
+            doRefresh(scope, loading, waitTime);
+        };
+        var doRefresh = function(scope, loading, waitTime){
+            // 是否展示没有数据，-1 : 不展示，1：展示加载中
+            scope.isShowNotList = (loading == null || loading == true)?1:-1;
+            // 延迟请求
+            setTimeout(function(){
+                HTTP.send({
+                    url: scope.pageUrl,
+                    method: 'post',
+                    headers: true,
+                    data: {pageNo: 1, userId: scope.filter.userId, data: scope.filter.data},
+                }).then(function(data){
+                    console.log(data);
+                    if(data.data!=null && data.data.obj!=null){
+                        // 主数据
+                        scope.dataList = data.data.obj.list==null?[]:data.data.obj.list;
+                        // 是否展示没有数据提示信息 -1：不展示，0：展示
+                        if(scope.dataList.length>0){
+                            scope.isShowNotList = -1;
                         }else{
-                            scope.myjl = true;
+                            scope.isShowNotList = 0;
                         }
-                        scope.$broadcast('scroll.infiniteScrollComplete');
-                    }, 1000);
-                 }
-            });
+
+                        // 总记录数目
+                        scope.totalCount = data.data.obj.count;
+                        // 当前记录数
+                        scope.numberPage = scope.dataList.length;    
+                        // 数据已加载完，不再下拉加载新数据
+                        if(data.data.obj.pageNo*data.data.obj.pageSize>=scope.totalCount){    
+                            scope.infinite_scroll_flag = false;
+                        }else{
+                            scope.infinite_scroll_flag = true;
+                        }
+
+                        // 上拉加载广播
+                        setTimeout(function() {
+                            scope.$broadcast('scroll.refreshComplete');  
+                        }, 500);
+                        // 回到列表顶部
+                        $ionicScrollDelegate.scrollTop(true);
+                    }else{
+                        scope.isShowNotList = 2;
+                    }
+                });
+            }, (waitTime==null || waitTime=='undefined' || waitTime=='')?500:waitTime);
         };
 
         // 上拉加载更多
-        this.loadMore = function(scope, url){
+        this.loadMore = function(scope){
+            // 延迟请求
+            setTimeout(function(){
                 HTTP.send({
-                    url: url,
-                    data: {pageNo: scope.pageNo, id: scope.filter.id, data: scope.filter.data},
+                    url: scope.pageUrl,
                     method: 'post',
                     headers: true,
+                    data: {pageNo: scope.pageNo, userId: scope.filter.userId, data: scope.filter.data},
                     loading: false
                 }).then(function(data){
-                    if(data.data!=null){
+                    if(data.data!=null && data.data.obj!=null){
+                        // 数据已加载完，不再下拉加载新数据，且列表无更新
                         if(data.data.obj.pageNo == 1){
-                            // 数据已加载完,不再执行剩下的操作
                             scope.infinite_scroll_flag = false; 
                             return;
                         }
-                        if(data.data.obj.pageNo*data.data.obj.pageSize>=data.data.obj.count){    
-                            // 数据已加载完，接着执行剩下的操作
-                            scope.infinite_scroll_flag = false;
-                        }
+
+                        // 总记录数目
+                        scope.totalCount = data.data.obj.count; 
+                        // 当前页
+                        scope.pageNo = scope.pageNo + 1;             
+                        // 当前记录数
+                        scope.numberPage = scope.dataList.length;    
+                        // 主数据
                         scope.dataList = scope.dataList.concat(data.data.obj.list==null?[]:data.data.obj.list);
-                        
-                        scope.pageNo = scope.pageNo + 1; // 当前页
-                        scope.count = data.data.obj.count; // 总记录数目
-                        scope.numberPage = scope.dataList.length; // 当前记录数
+                        // 数据已加载完，不再下拉加载新数据，且列表有更新
+                        if(data.data.obj.pageNo*data.data.obj.pageSize>=scope.totalCount){    
+                            scope.infinite_scroll_flag = false;
+                        }else{
+                            scope.infinite_scroll_flag = true; // 上拉加载
+                        }
 
                         // 上拉加载广播
                         setTimeout(function() {
                             scope.$broadcast('scroll.infiniteScrollComplete');
-                        }, 1000);
+                        }, 500);
+                    }else{
+                        $rootScope.tomIonicPopup = $ionicPopup.show({
+                            title: '出错了',
+                            buttons: [
+                                {
+                                    text: '我知道了',
+                                    type: SETTING.buttonColor
+                                },
+                            ]
+                        });
                     }
-            });
+                },function(){
+                    alert('出错了');
+                });
+            }, 1000);
         };
 
         /**
          * 返回上一级列表页面时判断是否需要刷新列表数据
          * 描述：在子页面更新了某条记录的状态，返回列表页时需更新列表
+         * 使用：打开新页面或返回上一页面
          * scope 作用域
          * url   缺省查询接口
          */
-        this.isRefresh = function(scope, url){
+        this.isRefresh = function(scope, url, data){
             if($rootScope.refreshPage==true || scope.dataList==null || scope.dataList.length==0){
                 // 初始化基本参数
                 init(scope);
-                // 控制是否刷新数据列表
-                $rootScope.refreshPage = false; // 是否刷新
+                // 数据Url
                 scope.pageUrl = scope.pageUrl == null ? url : scope.pageUrl;
+                // 设置查询条件data
+                if(data!=null && data!='undefined'){scope.filter.data = data;};
                 // 查询
-                doRefresh(scope, false);
+                doRefresh(scope, true);
             }
         };
     })
     // 自定义信息提示框
-    .service('infoService', function($rootScope, $ionicPopup, SETTING){
-        this.operationSucceeded = function(title, text, pageFlag, backFlag){
+    .service('tomIonicPopup', function($rootScope, $ionicPopup, SETTING){
+        this.operationSucceeded = function(title, buttonName, refreshPage, backPage){
             $ionicPopup.show({
                 title: (title==null||title=='')?'操作成功':title,
                 buttons: [
@@ -260,11 +314,11 @@ angular.module('service',[])
                         type: SETTING.butColor,
                         onTap: function (e) {
                             // 当前列表页（或返回上一级页面时）是否刷新列表
-                            if(pageFlag){
+                            if(refreshPage){
                                 $rootScope.refreshPage = true;
                             }
                             // 是否返回上一页
-                            if(backFlag){
+                            if(backPage){
                                 $rootScope.$ionicGoBack();
                             }
                         }

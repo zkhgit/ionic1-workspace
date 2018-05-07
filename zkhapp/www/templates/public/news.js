@@ -11,26 +11,26 @@ angular.module('public_news_ctrl',[])
 	            }
 	        });
     })
-    .controller('news', function($scope, newsService, publicService){
+    .controller('news', function($scope, newsService, commonService){
         // 初始化加载
         newsService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             $scope.filter.pageNo = 1;
-            publicService.doRefresh($scope);
+            commonService.doRefresh($scope);
         };
         // 上拉加载
         $scope.loadMore = function(){
-            publicService.loadMore($scope);
+            commonService.loadMore($scope);
         };
     })
-    .service('newsService', function(publicService){
+    .service('newsService', function(commonService, ACTION){
         this.loading = function(scope){
             // 设置初始化参数
-            publicService.init(scope);
-            // 设置栏目类型
-            scope.filter.categoryId = 203;
+            commonService.init(scope);
+            // 设置查询条件（栏目类型）
+            var data = {categoryId: 203};
             // 获取列表
-            publicService.doRefresh(scope, true);
+            commonService.isRefresh(scope, ACTION.public.list, data);
         };
     })

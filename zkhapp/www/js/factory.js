@@ -215,24 +215,7 @@ angular.module('factory',[])
             clear: clear
         };
     })
-    // 调用相机拍照
-    .factory('Camera', function($q) {
-
-        return {
-            getPicture: function (options) {
-                var q = $q.defer();
-                navigator.camera.getPicture(function (result) {
-                    q.resolve(result);
-                }, function (err) {
-                    q.reject(err);
-                }, options);
-
-                return q.promise;
-            }
-        };
-
-    })
-    // JSON数组排序
+     // JSON数组排序
     .factory("JSONBY",function(){
 
         //JSON排序
@@ -244,7 +227,7 @@ angular.module('factory',[])
 
         return{
             getSortFun: getSortFun
-        }
+        };
 
     })
     // 获得文件后缀名

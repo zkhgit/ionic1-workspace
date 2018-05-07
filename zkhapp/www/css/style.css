@@ -77,7 +77,7 @@ ion-header-bar span {
 
 /*页面列表【暂无数据】时的div样式*/
 .tom_not_list{
-    padding: 100px 0 100px 0; 
+    padding-top: 230px; 
     height: 100%;
     text-align: center;
     vertical-align: middle;
@@ -104,6 +104,7 @@ ion-header-bar span {
 .text-center{
     text-align: center;
 }
+
 /*自定义样式  --end--*/
 
 

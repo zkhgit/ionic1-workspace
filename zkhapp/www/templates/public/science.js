@@ -11,26 +11,26 @@ angular.module('public_science_ctrl',[])
 	            }
 	        });
     })
-    .controller('science', function($scope, scienceService, publicService){
+    .controller('science', function($scope, scienceService, commonService){
         // 初始化加载
         scienceService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             $scope.filter.pageNo = 1;
-            publicService.doRefresh($scope);
+            commonService.doRefresh($scope);
         };
         // 上拉加载
         $scope.loadMore = function(){
-            publicService.loadMore($scope);
+            commonService.loadMore($scope);
         };
     })
-    .service('scienceService', function(publicService){
+    .service('scienceService', function(commonService, ACTION){
         this.loading = function(scope){
             // 设置初始化参数
-            publicService.init(scope);
-            // 设置栏目类型
-            scope.filter.categoryId = 103;
+            commonService.init(scope);
+            // 设置查询条件（栏目类型）
+            var data = {categoryId: 103};
             // 获取列表
-            publicService.doRefresh(scope,true);
+            commonService.isRefresh(scope, ACTION.public.list, data);
         };
     })

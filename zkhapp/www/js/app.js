@@ -7,7 +7,6 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     /** 1、以下为自己开发的功能模块 */
     'provider','factory','service','value','constant', 'directive','filter',
     'tabs_ctrl',
-    'public_service', // 公共门户service
     'public_acticle_ctrl',
     'public_notice_ctrl',
     'public_news_ctrl',
@@ -223,9 +222,21 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     var timeTemp;
     if($rootScope.times==null){$rootScope.times = new Date().getTime();}
     $ionicPlatform.registerBackButtonAction(function (e) {
+        // 文件上传中提示
+        if($rootScope.tomUploadProgress != null){
+            $cordovaToast.showShortBottom("正在上传，请耐心等待！");
+            return;
+        }
+        // 关闭$ionicPopup
+        if($rootScope.tomIonicPopup!=null){
+            $rootScope.tomIonicPopup.close();
+            $rootScope.tomIonicPopup = null;
+            return;
+        }
         // 终止Ajax请求
         if($rootScope.httpStop!=null){
             HTTP.shutdown(true); // 终止请求
+            return;
         }
         // 判断处于哪个页面时双击退出
         if($location.path() == TAB.tabs.tab.url+TAB.tabs.main.url) {
