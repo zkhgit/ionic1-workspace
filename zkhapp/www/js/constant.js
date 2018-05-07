@@ -3,7 +3,7 @@
  * 它可以被注入到任何地方，但是不能被装饰器(decorator)装饰
  * 可以作为全局变量使用（个人觉得更像是java中的常量）
  */
-var IP = '192.168.0.24';  // 10.0.248.53  168.160.1.52 168.160.1.39 localhost
+var IP = 'localhost';  // 192.168.0.24 localhost
 var PORT = '8080';
 var PATH = 'http://'+ IP + ':' + PORT; //测试IP
 //var PATH = 'http://www.sxkjtpy.cn';      // 正式IP（域名）
@@ -13,11 +13,7 @@ angular.module('constant',[])
     /** 系统基础设置 */
     .constant('SETTING', {
         hideTabs: 'tabs-item-hide', // 是否显示tabs -- tabs-item-hide|''
-        butColor: 'button-positive', // 默认按钮颜色
-    })
-    .constant('SCREEN', {
-        height: screen.height, // 手机屏幕高度
-        width: screen.width, // 手机屏幕宽度
+        buttonColor: 'button-positive', // 默认按钮颜色
     })
     /** 配置页面跳转路径 */
     .constant('TAB', {

@@ -6,6 +6,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     'ionic-datepicker','w5c.validator','ngFileUpload','chart.js',
     /** 1、以下为自己开发的功能模块 */
     'provider','factory','service','value','constant', 'directive','filter',
+    'page',
     'tabs_ctrl',
     'public_acticle_ctrl',
     'public_notice_ctrl',

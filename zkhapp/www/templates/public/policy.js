@@ -11,26 +11,25 @@ angular.module('public_policy_ctrl',[])
 	            }
 	        });
     })
-    .controller('policy', function($scope, policyService, commonService){
+    .controller('policy', function($scope, policyService, PAGE){
         // 初始化加载
         policyService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
-            $scope.filter.pageNo = 1;
-            commonService.doRefresh($scope);
+            PAGE.doRefresh($scope, false);
         };
         // 上拉加载
         $scope.loadMore = function(){
-            commonService.loadMore($scope);
+            PAGE.loadMore($scope);
         };
     })
-    .service('policyService', function(commonService, ACTION){
+    .service('policyService', function(PAGE, ACTION){
         this.loading = function(scope){
             // 设置初始化参数
-            commonService.init(scope);
+            PAGE.init(scope);
             // 设置查询条件（栏目类型）
             var data = {categoryId: 202};
             // 获取列表
-            commonService.isRefresh(scope, ACTION.public.list, data);
+            PAGE.isRefresh(scope, ACTION.public.list, data);
         };
     })

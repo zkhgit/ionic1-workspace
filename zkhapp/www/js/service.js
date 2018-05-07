@@ -150,7 +150,7 @@ angular.module('service',[])
         };
     })
     // 公用工具服务
-    .service('commonService', function($timeout, $rootScope, $ionicPopup, $ionicScrollDelegate, TAB, HTTP, ACTION, CACHE, JSONBY, SCREEN, SETTING){
+    .service('commonService', function($timeout, $rootScope, $ionicPopup, $ionicScrollDelegate, TAB, HTTP, ACTION, CACHE, JSONBY, SETTING){
         // 初始化参数
         this.init = function(scope){
             init(scope);
@@ -171,7 +171,6 @@ angular.module('service',[])
             }
 
             scope.TAB = TAB;
-            scope.SCREEN = SCREEN;
         };
 
         /**
