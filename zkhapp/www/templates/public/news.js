@@ -11,7 +11,7 @@ angular.module('public_news_ctrl',[])
 	            }
 	        });
     })
-    .controller('news', function($scope, newsService, PAGE){
+    .controller('news', function($scope, $rootScope, $ionicPopup, newsService, PAGE){
         // 初始化加载
         newsService.loading($scope);
         // 下拉刷新
@@ -22,10 +22,28 @@ angular.module('public_news_ctrl',[])
         $scope.loadMore = function(){
             PAGE.loadMore($scope);
         };
+        // 长按删除
+        $scope.onHold = function(acticle){
+            $rootScope.tomIonicPopup = $ionicPopup.show({
+                title: '提示',
+                subTitle: "确定要删除该条记录吗？",
+                buttons: [
+                  { text: '取消' },
+                  {
+                    text: '删除',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        $scope.dataList.splice($scope.dataList.indexOf(acticle), 1)
+                    }
+                  },
+                ]
+              });
+            
+        };
     })
     .service('newsService', function(PAGE, ACTION){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, null, {categoryId: 203});
+            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 203});
         };
     })

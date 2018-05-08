@@ -92,7 +92,7 @@ angular.module('constant',[])
     // 通过$ionicLoadingConfig设置默认加载效果
     .constant('$ionicLoadingConfig', {
         //template: '<div class="card" style="width:200px;"><div class="positive padding" style="text-align: left;width:200px;height: 45px;border-bottom: 2px solid #387EF5;font-size: 20px;">提示</div><p style="margin-top:10px;margin-bottom: 5px;"><ion-spinner icon="ios"></ion-spinner></p></div>', // 动画模板
-        template: '<ion-spinner icon="bubbles" class="spinner-positive"></ion-spinner>', // style="fill:red"
+        template: '<ion-spinner icon="bubbles"></ion-spinner>', // style="fill:red"
     　　hideOnStateChange:false,
     　  showBackdrop: false,                 //是否显示蒙层
     　　maxWidth: 600,    

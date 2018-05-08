@@ -26,6 +26,6 @@ angular.module('public_notice_ctrl',[])
     .service('noticeService', function(PAGE, ACTION){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, null, {categoryId: 201});
+            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 201});
         };
     })

@@ -26,6 +26,6 @@ angular.module('public_policy_ctrl',[])
     .service('policyService', function(PAGE, ACTION){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, null, {categoryId: 202});
+            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 202});
         };
     })

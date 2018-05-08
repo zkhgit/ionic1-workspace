@@ -26,6 +26,6 @@ angular.module('public_science_ctrl',[])
     .service('scienceService', function(PAGE, ACTION){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, null, {categoryId: 103});
+            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 103});
         };
     });

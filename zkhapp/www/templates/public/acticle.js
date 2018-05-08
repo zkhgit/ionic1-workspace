@@ -26,26 +26,22 @@ angular.module('public_acticle_ctrl',[])
 
 		// 通过文章id获取文章内容
 		var getContent = function(scope, id){
-
-			setTimeout(function() {
-				HTTP.send({
-					url: ACTION.public.getContent,
-					params:{
-						id: id
-					},
-					loading:false
-				}).then(function(data){
-					scope.acticle = data.data.obj;
-					if(scope.acticle!=null && scope.acticle.articleData!=null && scope.acticle.articleData.content!=null){
-						scope.content = scope.acticle.articleData.content.replace(/\/kjtpypt/g, scope.PORT + '/kjtpypt');
-					}else{
-						scope.content = "";
-					}
-					// 调整内容中的图片大小和位置
-					setTimeout(function() {
-						$('#mainContent').find('img').css('width','100%').css('height','auto').css('marginLeft', '-28px');
-					}, 150);
-				});
-			}, 500);
+			HTTP.send({
+				url: ACTION.public.getContent,
+				params:{
+					id: id
+				}
+			}).then(function(data){
+				scope.acticle = data.data.obj;
+				if(scope.acticle!=null && scope.acticle.articleData!=null && scope.acticle.articleData.content!=null){
+					scope.content = scope.acticle.articleData.content.replace(/\/kjtpypt/g, scope.PORT + '/kjtpypt');
+				}else{
+					scope.content = "";
+				}
+				// 调整内容中的图片大小和位置
+				setTimeout(function() {
+					$('#mainContent').find('img').css('width','100%').css('height','auto').css('marginLeft', '-28px');
+				}, 150);
+			});
 		};
     });

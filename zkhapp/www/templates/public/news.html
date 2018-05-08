@@ -19,6 +19,7 @@
         <ion-list>
             <ion-item class="item item-icon-right" 
                 ng-repeat = "acticle in dataList" 
+                on-hold = "onHold(acticle)"
                 ui-sref = "{{TAB.public.acticle.name}}({id: acticle.id})">
 
                 <h2 style="font-size:14px;margin-left:10px;">{{acticle.title}}</h2>
@@ -33,7 +34,7 @@
 
         <!--上拉加载-->
         <page-datalist-loaded></page-datalist-loaded>
-        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="isInfiniteScroll" spinner="dots"></ion-infinite-scroll> 
+        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="isInfiniteScroll" immediate-check="false" spinner="dots"></ion-infinite-scroll> 
         <!--上拉加载-->
         
     </ion-content>

@@ -6,7 +6,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     'ionic-datepicker','w5c.validator','ngFileUpload','chart.js',
     /** 1、以下为自己开发的功能模块 */
     'provider','factory','service','value','constant','directive','filter',
-    'common','page',
+    'common','cache','http','page',
     'tabs_ctrl',
     'public_acticle_ctrl',
     'public_notice_ctrl',
@@ -28,6 +28,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     $ionicConfigProvider.platform.android.backButton.text('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;').icon('ion-ios-arrow-back');//ion-android-arrow-back  ion-chevron-left
     $ionicConfigProvider.platform.ios.views.transition('ios');
     $ionicConfigProvider.platform.android.views.transition('android');
+    $ionicConfigProvider.views.swipeBackEnabled(false); // IOS是否允许右滑返回上一页
     /** 1、安卓环境时tabs置底处理,以及一些其他全局配置*********************************/
 
     /** 2、调用原生页面切换效果******************************************************/
@@ -282,7 +283,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     /** 2、物理返回按钮控制&双击退出应用******************************************/
     
     /** 3、初始化全局变量******************************************/
-    $rootScope.PATH = 'http://localhost:8080'; //测试IP
+    $rootScope.PATH = 'http://192.168.3.7:8080'; //测试IP
     $rootScope.DOMAIN_NAME = $rootScope.PATH + '/kjtrzpt';
     /** 3、初始化全局变量******************************************/
 
