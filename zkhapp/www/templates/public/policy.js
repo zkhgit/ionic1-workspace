@@ -16,7 +16,7 @@ angular.module('public_policy_ctrl',[])
         policyService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
-            PAGE.doRefresh($scope, false);
+            PAGE.doRefresh($scope);
         };
         // 上拉加载
         $scope.loadMore = function(){
@@ -25,11 +25,7 @@ angular.module('public_policy_ctrl',[])
     })
     .service('policyService', function(PAGE, ACTION){
         this.loading = function(scope){
-            // 设置初始化参数
-            PAGE.init(scope);
-            // 设置查询条件（栏目类型）
-            var data = {categoryId: 202};
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, data);
+            PAGE.isRefresh(scope, ACTION.public.list, true, null, {categoryId: 202});
         };
     })

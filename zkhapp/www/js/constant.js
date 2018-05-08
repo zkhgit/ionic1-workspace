@@ -3,12 +3,6 @@
  * 它可以被注入到任何地方，但是不能被装饰器(decorator)装饰
  * 可以作为全局变量使用（个人觉得更像是java中的常量）
  */
-var IP = 'localhost';  // 192.168.0.24 localhost
-var PORT = '8080';
-var PATH = 'http://'+ IP + ':' + PORT; //测试IP
-//var PATH = 'http://www.sxkjtpy.cn';      // 正式IP（域名）
-var DOMAIN_NAME = PATH + '/kjtrzpt';
-
 angular.module('constant',[])
     /** 系统基础设置 */
     .constant('SETTING', {

@@ -25,7 +25,7 @@ angular.module('factory',[])
         //});
 
         var send = function (config) {
-            config.url = DOMAIN_NAME + config.url;
+            config.url = $rootScope.DOMAIN_NAME + config.url;
             var networkState = true;
             if(window.cordova){
                 //判断当前网络是否正常

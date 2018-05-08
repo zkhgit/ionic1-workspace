@@ -28,12 +28,12 @@
         </ion-list>
 
         <!-- 数据加载loading -->
-        <tom-data-list-loading></tom-data-list-loading>
+        <page-datalist-loading></page-datalist-loading>
         <!-- 数据加载loading -->
 
         <!--上拉加载-->
-        <div class="text-center" ng-if="!infinite_scroll_flag && dataList.length>0" style="line-height:25px; font-size:10px;color:#0f0f0f">已经到底了！</div>
-        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="infinite_scroll_flag" spinner="dots"></ion-infinite-scroll> 
+        <page-datalist-loaded></page-datalist-loaded>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="isInfiniteScroll" spinner="dots"></ion-infinite-scroll> 
         <!--上拉加载-->
         
     </ion-content>

@@ -9,5 +9,4 @@ angular.module('value',[])
     // 文件路径
     .value('PATH', {
         ionicDown: 'file:///storage/emulated/0/ionicDown/', // 文件存放路径
-        filePath: PATH + '/kjtpypt/app/download?fileName=', // 文件源路径
     })

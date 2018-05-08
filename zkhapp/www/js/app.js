@@ -5,8 +5,8 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     // 第三方组件
     'ionic-datepicker','w5c.validator','ngFileUpload','chart.js',
     /** 1、以下为自己开发的功能模块 */
-    'provider','factory','service','value','constant', 'directive','filter',
-    'page',
+    'provider','factory','service','value','constant','directive','filter',
+    'common','page',
     'tabs_ctrl',
     'public_acticle_ctrl',
     'public_notice_ctrl',
@@ -281,8 +281,9 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     }, 501); // $ionicLoading优先级为500，貌似是默认里最大的了
     /** 2、物理返回按钮控制&双击退出应用******************************************/
     
-    /** 3、是否刷新当前页面******************************************/
-    $rootScope.refreshPage = false;
-    /** 3、是否刷新当前页面******************************************/
+    /** 3、初始化全局变量******************************************/
+    $rootScope.PATH = 'http://localhost:8080'; //测试IP
+    $rootScope.DOMAIN_NAME = $rootScope.PATH + '/kjtrzpt';
+    /** 3、初始化全局变量******************************************/
 
 });
