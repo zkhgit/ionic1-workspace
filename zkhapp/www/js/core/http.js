@@ -144,9 +144,10 @@ angular.module('http', [])
                         }
                     ]
                 });
+            }else{
+                // 除用户右键及异常取消请求外，都要执行
+                $rootScope.httpStop = null;
             }
 
-            // 除用户右键取消请求外，都要执行
-            $rootScope.httpStop = null;
         };
     });

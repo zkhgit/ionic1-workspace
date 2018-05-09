@@ -77,10 +77,8 @@ ion-header-bar span {
 
 /*页面列表【暂无数据】时的div样式*/
 .page-data-list-loading{
-    padding-top: 230px; 
     height: 100%;
     text-align: center;
-    vertical-align: middle;
 }
 
 /* 背景 ****************/

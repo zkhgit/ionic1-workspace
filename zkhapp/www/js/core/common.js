@@ -4,6 +4,6 @@ angular.module('common', [])
         // 页面初始化
         this.scopeInit = function(scope){
             scope.TAB = TAB;
-            //scope.SCREEN = screen;
+            scope.SCREEN = screen;
         };
     });
