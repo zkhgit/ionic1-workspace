@@ -54,7 +54,7 @@ angular.module('http', [])
             if (config.loading == true) {$ionicLoading.show(); }
 
             //2、头部配置
-            if (config.headers == null || config.headers == false) {
+            if (!config.headers || config.headers == false) {
                 config.headers = {
                     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
                     'Accept': 'application/json, text/javascript, */*; q=0.01',
@@ -80,7 +80,7 @@ angular.module('http', [])
             //6、异常处理
             var http = $http(config);
             http.catch(function (error) {//error:重写异常数据
-                if (error.data == null) {
+                if (!error.data) {
                     error.data = {};
                 }
                 if (error.status == 0) {
@@ -101,7 +101,7 @@ angular.module('http', [])
                     };
                 }
                 //6.2、异常展示
-                if (config.catch == null || config.catch == true){
+                if (!config.catch || config.catch == true){
                     // 终止请求
                     shutdown(null, true, error.data.title);
                 }
@@ -133,7 +133,7 @@ angular.module('http', [])
                 return;
             }
             // （自动）异常终止
-            if(typeof(exception)=='boolean' && exception == true && $rootScope.httpStop!=null){
+            if(typeof(exception)=='boolean' && exception == true && !!$rootScope.httpStop){
                 // 弹出异常提示对话框
                 $ionicPopup.alert({
                     title: msg,

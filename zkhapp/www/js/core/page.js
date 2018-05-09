@@ -55,13 +55,13 @@ angular.module('page',[])
         this.isRefresh = function(scope, url, loading, data){
             // 每次进入页面时调用，包括从子页面返回时
             scope.$on('$ionicView.afterEnter', function() {
-                if($rootScope.refreshPage==true || scope.data==null || scope.data.list==null || scope.data.list.length==0){
+                if($rootScope.refreshPage==true || !scope.data || !scope.data.list || scope.data.list.length==0){
                     // 初始化基本参数
                     init(scope);
                     // 数据接口Url
-                    scope.data.url = url == null ? scope.data.url : url;
+                    scope.data.url = !url ? scope.data.url : url;
                     // 设置查询条件data
-                    if(data!=null && data!='undefined'){scope.data.filter.data = data;};
+                    if(!!data){scope.data.filter.data = data;};
                     // 查询
                     doRefresh(scope, loading);
                 }
@@ -79,7 +79,7 @@ angular.module('page',[])
 
         var doRefresh = function(scope, loading){
             // 数据列表加载状态，-1 : 加载成功并隐藏加载状态，1：加载中
-            scope.dataListLoading = (loading == null || loading == true)?1:2;
+            scope.dataListLoading = (!loading || loading == true)?1:2;
             HTTP.send({
                 url: scope.data.url,
                 method: 'post',
@@ -87,10 +87,10 @@ angular.module('page',[])
                 data: {pageNo: scope.data.page.pageNo, userId: scope.data.filter.userId, data: scope.data.filter.data},
                 loading: false
             }).then(function(data){
-                if(data!=null && data.data!=null && data.data.obj!=null){
+                if(!!data && !!data.data && !!data.data.obj){
                     var obj = data.data.obj;
                     // 主数据
-                    scope.data.list = obj.list==null?[]:obj.list;
+                    scope.data.list = !!obj.list?[]:obj.list;
                     // 分页参数
                     scope.data.page = {
                         totalCount: obj.count,                // 总记录数
@@ -122,13 +122,13 @@ angular.module('page',[])
                 data: {pageNo: scope.data.page.pageNo, userId: scope.data.filter.userId, data: scope.data.filter.data},
                 loading: false
             },1000).then(function(data){
-                if(data!=null && data.data!=null && data.data.obj!=null){
+                if(!!data && !!data.data && !!data.data.obj){
                     // 数据已加载完，不再下拉加载新数据，且列表无更新
                     if(data.data.obj.pageNo == 1){scope.isInfiniteScroll = false;return;}
 
                     var obj = data.data.obj;
                     // 主数据
-                    scope.data.list = obj.list==null?scope.data.list:scope.data.list.concat(obj.list);
+                    scope.data.list = !obj.list?scope.data.list:scope.data.list.concat(obj.list);
                     // 分页参数
                     scope.data.page = {
                         totalCount: obj.count,                // 总记录数
@@ -159,7 +159,7 @@ angular.module('page',[])
             scope: false,
             restrict: 'E',
             replace: true,
-            template: '<div style="height: 100%;text-align: center;" class="page-data-list-loading" ng-style="{\'padding-top\':(SCREEN.height/2-SCREEN.width*0.18-20+((paddingTop==null||paddingTop==\'undefined\')?0:paddingTop))+\'px\'}">'+
+            template: '<div style="height: 100%;text-align: center;" class="page-data-list-loading" ng-style="{\'padding-top\':(SCREEN.height/2-SCREEN.width*0.18-20+(!paddingTop?0:paddingTop))+\'px\'}">'+
                             '<img class="page-data-list-infoimg" width="36%" ng-src="{{dataListLoading==\'0\'?\'img/zwjl.png\':\'img/error.png\'}}">{{paddingTop}}'+
                             '<div ng-style="{\'margin-top\':SCREEN.width*0.02+20+\'px\'}"><ion-spinner class="page-data-list-loading-ion" icon="bubbles"></ion-spinner></div>'+
                       '</div>',
@@ -170,9 +170,9 @@ angular.module('page',[])
                     $('.page-data-list-infoimg').css('display', 'none');
                     $('.page-data-list-loading-ion').css('display', 'none');
 
-                    if(newValue == null || newValue=='undefined' || newValue === 2){
+                    if(!newValue || newValue==2){
                         $('.page-data-list-loading').css('display', 'none');
-                    }else if(newValue === -1 && $rootScope.httpStop!=null){// 请求失败 、异常
+                    }else if(newValue === -1 && !!$rootScope.httpStop){// 请求失败 、异常
                         $('.page-data-list-infoimg').css('display', '');
                     }else if(newValue === 0){
                         $('.page-data-list-infoimg').css('display', '');
@@ -195,7 +195,7 @@ angular.module('page',[])
             replace: true,
             template: '<div class="page-datalist-loaded">'+
                             '<div class="page-datalist-loaded-yespage text-center" style="line-height:25px; font-size:10px;color:#0f0f0f">已加载{{data.page.currentCount}}条，共{{data.page.totalCount}}条</div>'+
-                            '<div class="page-datalist-loaded-nopage text-center" style="line-height:25px; font-size:10px;color:#0f0f0f" ng-bind="(loadedTitle==null||loadedTitle==\'undefined\'||loadedTitle==\'\')?\'没有更多了！\':loadedTitle"></div>'+
+                            '<div class="page-datalist-loaded-nopage text-center" style="line-height:25px; font-size:10px;color:#0f0f0f" ng-bind="!loadedTitle?\'没有更多了！\':loadedTitle"></div>'+
                       '</div>',
             controller: function($scope){
                 // 底部是否显示分页数据
@@ -209,7 +209,7 @@ angular.module('page',[])
                     }else{
                         // false：数据已加载完，true：数据未加载完
                         $scope.$watch('isInfiniteScroll',function(newValue){
-                            if(newValue===false && $scope.data!=null && $scope.data.list!=null && $scope.data.list.length>0){
+                            if(newValue===false && !!$scope.data && !!$scope.data.list && $scope.data.list.length>0){
                                 $('.page-datalist-loaded-nopage').css('display', '');
                             } 
                         });

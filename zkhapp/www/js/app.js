@@ -222,21 +222,21 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
 
     /** 2、物理返回按钮控制&双击退出应用******************************************/
     var timeTemp;
-    if($rootScope.times==null){$rootScope.times = new Date().getTime();}
+    if(!$rootScope.times){$rootScope.times = new Date().getTime();}
     $ionicPlatform.registerBackButtonAction(function (e) {
         // 文件上传中提示
-        if($rootScope.tomUploadProgress != null){
+        if(!!$rootScope.tomUploadProgress){
             $cordovaToast.showShortBottom("正在上传，请耐心等待！");
             return;
         }
         // 关闭$ionicPopup
-        if($rootScope.tomIonicPopup!=null){
+        if(!!$rootScope.tomIonicPopup){
             $rootScope.tomIonicPopup.close();
             $rootScope.tomIonicPopup = null;
             return;
         }
         // 终止Ajax请求
-        if($rootScope.httpStop!=null){
+        if(!!$rootScope.httpStop){
             HTTP.shutdown(true); // 终止请求
             return;
         }
