@@ -103,13 +103,13 @@ angular.module('http', [])
                 //6.2、异常展示
                 if (!config.catch || config.catch == true){
                     // 终止请求
-                    shutdown(null, true, error.data.title);
+                    shutdown(102, error.data.title);
                 }
             });
 
             http.then(function (data) {
                 // 请求成功，终止请求
-                shutdown();
+                shutdown();alert("成功");
             });
 
             return http;
@@ -117,24 +117,18 @@ angular.module('http', [])
 
 
         // 终止Http请求
-        this.shutdown = function(flag, exception){
-            shutdown(flag, exception, null);
+        this.shutdown = function(status){
+            shutdown(status, null);
         }
         
-        var shutdown = function(flag, exception, msg){
-            $ionicLoading.hide();
-            $rootScope.$broadcast('scroll.refreshComplete');
-
-            // （手动）右键终止
-            if(typeof(flag)=='boolean' && flag == true){
-                $rootScope.httpStop.resolve(); // 终止Ajax请求
-                $rootScope.httpStop = null;
+        var shutdown = function(status, msg){
+            if(!status){
+                // 请求正常结束
+            }else if(status===101){// （手动）右键终止
+                $rootScope.httpStop.resolve();
+                $rootScope.httpStop = null; // 解决了右键时显示异常信息
                 $cordovaToast.showLongBottom("请求已取消");
-                return;
-            }
-            // （自动）异常终止
-            if(typeof(exception)=='boolean' && exception == true && !!$rootScope.httpStop){
-                // 弹出异常提示对话框
+            }else if(status===102 && !!$rootScope.httpStop){// （自动）异常终止
                 $ionicPopup.alert({
                     title: msg,
                     buttons: [
@@ -144,10 +138,8 @@ angular.module('http', [])
                         }
                     ]
                 });
-            }else{
-                // 除用户右键及异常取消请求外，都要执行
-                $rootScope.httpStop = null;
             }
 
+            $ionicLoading.hide();
         };
     });

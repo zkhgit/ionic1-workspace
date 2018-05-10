@@ -72,14 +72,18 @@ angular.module('page',[])
          * 下拉刷新
          * scope    作用域（当前页面）
          */ 
-        this.doRefresh = function(scope){
+        this.doRefresh = function(scope, data){
+            // 设置查询页码
             scope.data.page.pageNo = 1;
+            // 设置查询条件data
+            if(!!data){scope.data.filter.data = data;};
             doRefresh(scope, false);
         };
 
+        // 刷新公共方法
         var doRefresh = function(scope, loading){
             // 数据列表加载状态，-1 : 加载成功并隐藏加载状态，1：加载中
-            scope.dataListLoading = (!loading || loading == true)?1:2;
+            scope.dataListLoading = ((!loading || loading == true) && loading!=false)?1:2;
             HTTP.send({
                 url: scope.data.url,
                 method: 'post',
@@ -107,8 +111,12 @@ angular.module('page',[])
                 }else{
                     scope.dataListLoading = -1; // 出错了
                 }
+                // 延迟广播
+                $timeout(function() {scope.$broadcast('scroll.refreshComplete');}, 1000);
             },function(e){
                 scope.dataListLoading = -1; // 出错了
+                // 延迟广播
+                $timeout(function() {scope.$broadcast('scroll.refreshComplete');}, 1000);
             });
         };
 
@@ -140,13 +148,15 @@ angular.module('page',[])
                     if(obj.pageNo*obj.pageSize >= obj.count){scope.isInfiniteScroll = false;}else{scope.isInfiniteScroll = true;}
                     // 数据列表加载状态提示信息（2：加载成功并隐藏加载状态）
                     scope.dataListLoading = 2;
-                    // 延迟这个广播对上拉加载效果提升明显
-                    $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete')}, 1000);
                 }else{
                     scope.dataListLoading = -1; // 出错了
                 }
+                // 延迟这个广播对上拉加载效果提升明显
+                $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 1000);
             },function(e){
                 scope.dataListLoading = -1; // 出错了
+                // 延迟这个广播对上拉加载效果提升明显
+                $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 1000);
             });
         };
     })

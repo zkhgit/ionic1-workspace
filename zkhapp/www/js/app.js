@@ -237,7 +237,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
         }
         // 终止Ajax请求
         if(!!$rootScope.httpStop){
-            HTTP.shutdown(true); // 终止请求
+            HTTP.shutdown(101); // 终止请求
             return;
         }
         // 判断处于哪个页面时双击退出
