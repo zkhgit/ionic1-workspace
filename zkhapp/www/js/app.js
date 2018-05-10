@@ -237,7 +237,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
         }
         // 终止Ajax请求
         if(!!$rootScope.httpStop){
-            HTTP.shutdown(101); // 终止请求
+            HTTP.shutdown(102); // 终止请求
             return;
         }
         // 判断处于哪个页面时双击退出
@@ -283,7 +283,7 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
     /** 2、物理返回按钮控制&双击退出应用******************************************/
     
     /** 3、初始化全局变量******************************************/
-    $rootScope.PATH = 'http://localhost1:8080'; //测试IP 192.168.3.7
+    $rootScope.PATH = 'http://localhost:8080'; //测试IP 192.168.3.7
     $rootScope.DOMAIN_NAME = $rootScope.PATH + '/kjtrzpt';
     /** 3、初始化全局变量******************************************/
 

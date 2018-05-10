@@ -79,7 +79,13 @@ angular.module('http', [])
 
             //6、异常处理
             var http = $http(config);
-            http.catch(function (error) {//error:重写异常数据
+            // 正常结束（成功或失败）
+            http.then(function (data) {
+                // 请求成功，终止请求
+                shutdown();
+            });
+            // 异常结束
+            http.catch(function (error) {
                 if (!error.data) {
                     error.data = {};
                 }
@@ -103,13 +109,12 @@ angular.module('http', [])
                 //6.2、异常展示
                 if (!config.catch || config.catch == true){
                     // 终止请求
-                    shutdown(102, error.data.title);
+                    shutdown(101, error.data.title);
                 }
             });
-
-            http.then(function (data) {
-                // 请求成功，终止请求
-                shutdown();alert("成功");
+            // 最终执行
+            http.finally(function(){
+                $ionicLoading.hide();
             });
 
             return http;
@@ -117,18 +122,14 @@ angular.module('http', [])
 
 
         // 终止Http请求
-        this.shutdown = function(status){
-            shutdown(status, null);
-        }
+        this.shutdown = function(status, msg){
+            shutdown(status, msg);
+        };
         
         var shutdown = function(status, msg){
-            if(!status){
-                // 请求正常结束
-            }else if(status===101){// （手动）右键终止
-                $rootScope.httpStop.resolve();
-                $rootScope.httpStop = null; // 解决了右键时显示异常信息
-                $cordovaToast.showLongBottom("请求已取消");
-            }else if(status===102 && !!$rootScope.httpStop){// （自动）异常终止
+            // null/true：请求成功，101：请求失败，102右键终止
+            if(!status || !$rootScope.httpStop){ // （自动）请求成功
+            }else if(status===101){              // （手动）请求异常（或失败）
                 $ionicPopup.alert({
                     title: msg,
                     buttons: [
@@ -138,8 +139,12 @@ angular.module('http', [])
                         }
                     ]
                 });
+            }else if(status===102){             // （手动）右键终止
+                $rootScope.httpStop.resolve();
+                $cordovaToast.showLongBottom("请求已取消");
             }
 
-            $ionicLoading.hide();
+            // 必须放在最后
+            $rootScope.httpStop = null;
         };
     });

@@ -111,12 +111,11 @@ angular.module('page',[])
                 }else{
                     scope.dataListLoading = -1; // 出错了
                 }
-                // 延迟广播
-                $timeout(function() {scope.$broadcast('scroll.refreshComplete');}, 1000);
             },function(e){
                 scope.dataListLoading = -1; // 出错了
+            }).finally(function(){
                 // 延迟广播
-                $timeout(function() {scope.$broadcast('scroll.refreshComplete');}, 1000);
+                $timeout(function() {$rootScope.$broadcast('scroll.refreshComplete');}, 1000);
             });
         };
 
@@ -128,7 +127,7 @@ angular.module('page',[])
                 method: 'post',
                 headers: true,
                 data: {pageNo: scope.data.page.pageNo, userId: scope.data.filter.userId, data: scope.data.filter.data},
-                loading: false
+                loading: false,
             },1000).then(function(data){
                 if(!!data && !!data.data && !!data.data.obj){
                     // 数据已加载完，不再下拉加载新数据，且列表无更新
@@ -151,10 +150,9 @@ angular.module('page',[])
                 }else{
                     scope.dataListLoading = -1; // 出错了
                 }
-                // 延迟这个广播对上拉加载效果提升明显
-                $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 1000);
             },function(e){
                 scope.dataListLoading = -1; // 出错了
+            }).finally(function(){
                 // 延迟这个广播对上拉加载效果提升明显
                 $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 1000);
             });
