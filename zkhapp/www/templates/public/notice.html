@@ -8,13 +8,10 @@
 
     <!-- 通知通告 -->
     <ion-content overflow-scroll="false" has-bouncing="true">
-      
-        <ion-refresher
-          pulling-text="读取"
-          pulling-icon="ion-android-refresh"
-          refreshing-text="智能读取中"
-          on-refresh="doRefresh()" spinner="ripple">
-        </ion-refresher>
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="doRefresh()" pulling-text="读取" refreshing-text="智能读取中" pulling-icon="ion-android-refresh" spinner="ripple"></ion-refresher>
+        <page-datalist-loading></page-datalist-loading>
+        <!--下拉刷新-->
 
         <ion-list>
             <ion-item class="item item-icon-right" 
@@ -27,14 +24,9 @@
             </ion-item>
         </ion-list>
 
-        <!-- 数据加载loading -->
-        <page-datalist-loading></page-datalist-loading>
-        <!-- 数据加载loading -->
-
         <!--上拉加载-->
-        <page-datalist-loaded></page-datalist-loaded>
-        <ion-infinite-scroll on-infinite="loadMore()" distance="3%" ng-if="isInfiniteScroll" spinner="dots"></ion-infinite-scroll> 
+        <page-datalist-loaded ng-init="loadedTitle='通知公告加载完成';"></page-datalist-loaded>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="30%" ng-if="isInfiniteScroll" immediate-check="false" spinner="dots"></ion-infinite-scroll> 
         <!--上拉加载-->
-        
     </ion-content>
 </ion-view>

@@ -1,19 +1,16 @@
 
 <ion-view>
-
     <ion-nav-bar class="bar-positive light">
       <ion-nav-back-button></ion-nav-back-button>
       <ion-nav-title ng-bind="TAB.public.news.title"></ion-nav-title>
     </ion-nav-bar>
 
     <!-- 新闻动态 -->
-    <ion-content overflow-scroll="false" has-bouncing="true">
+    <ion-content overflow-scroll="false" has-bouncing="true"> 
         <!--下拉刷新-->
-        <ion-refresher pulling-text="读取" pulling-icon="ion-android-refresh" refreshing-text="智能读取中" spinner="ripple" on-refresh="doRefresh()"></ion-refresher>
-        <!--下拉刷新-->
-        <!--加载动画（刷新、下拉刷新）-->
+        <ion-refresher on-refresh="doRefresh()" pulling-text="读取" refreshing-text="智能读取中" pulling-icon="ion-android-refresh" spinner="ripple"></ion-refresher>
         <page-datalist-loading></page-datalist-loading>
-        <!--加载动画（刷新、下拉刷新）-->
+        <!--下拉刷新-->
 
         <ion-list>
             <ion-item class="item item-icon-right" 
@@ -28,7 +25,7 @@
         </ion-list>
 
         <!--上拉加载-->
-        <page-datalist-loaded></page-datalist-loaded>
+        <page-datalist-loaded ng-init="isPage=true;loadedTitle='新闻动态加载完成';"></page-datalist-loaded>
         <ion-infinite-scroll on-infinite="loadMore()" distance="30%" ng-if="isInfiniteScroll" immediate-check="false" spinner="dots"></ion-infinite-scroll> 
         <!--上拉加载-->
     </ion-content>

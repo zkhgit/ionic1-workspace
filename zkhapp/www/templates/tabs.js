@@ -27,9 +27,9 @@ angular.module('tabs_ctrl',[])
             PATH = 'http://'+ IP + ':' + PORT; //测试IP
             DOMAIN_NAME = PATH + '/kjtrzpt';
             $cordovaToast.showLongBottom('服务器设置成功');
-        }
+        };
     })
-    .service('mainService', function($cordovaToast, TAB, HTTP, ACTION, JSONBY, CACHE){
+    .service('mainService', function($cordovaToast, CACHE, TAB, HTTP, ACTION, JSONBY, CACHE){
         this.loading = function(scope){
             scope.TAB = TAB;
         };

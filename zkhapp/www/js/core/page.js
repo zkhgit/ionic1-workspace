@@ -1,5 +1,5 @@
 /**
- * 分页
+ * 分页配置
  */
 angular.module('page',[])
     // 数据列表的上拉加载、下拉刷新
@@ -82,24 +82,26 @@ angular.module('page',[])
 
         // 刷新公共方法
         var doRefresh = function(scope, loading){
-            // 数据列表加载状态，-1 : 加载成功并隐藏加载状态，1：加载中
+            // 数据列表加载状态，1：加载中，2：加载成功并隐藏加载状态
             scope.dataListLoading = ((!loading || loading == true) && loading!=false)?1:2;
             HTTP.send({
                 url: scope.data.url,
                 method: 'post',
                 headers: true,
                 data: {pageNo: scope.data.page.pageNo, userId: scope.data.filter.userId, data: scope.data.filter.data},
-                loading: false
+                loading: false,
+                catch: false
             }).then(function(data){
                 if(!!data && !!data.data && !!data.data.obj){
                     var obj = data.data.obj;
+                    
                     // 主数据
-                    scope.data.list = !!obj.list?[]:obj.list;
+                    scope.data.list = !obj.list?[]:obj.list;
                     // 分页参数
                     scope.data.page = {
                         totalCount: obj.count,                // 总记录数
                         currentCount: scope.data.list.length, // 当前已加载记录数
-                        pageNo: scope.data.page.pageNo + 1      // 下一页页码
+                        pageNo: scope.data.page.pageNo + 1    // 下一页页码
                     };
                     
                     // 是否允许上拉加载操作（true：允许执行上拉加载更多，false：不允许）
@@ -113,9 +115,11 @@ angular.module('page',[])
                 }
             },function(e){
                 scope.dataListLoading = -1; // 出错了
+            }).catch(function(e){
+                HTTP.shutdown(103);
             }).finally(function(){
                 // 延迟广播
-                $timeout(function() {$rootScope.$broadcast('scroll.refreshComplete');}, 1000);
+                $timeout(function() {$rootScope.$broadcast('scroll.refreshComplete');}, 500);
             });
         };
 
@@ -128,12 +132,14 @@ angular.module('page',[])
                 headers: true,
                 data: {pageNo: scope.data.page.pageNo, userId: scope.data.filter.userId, data: scope.data.filter.data},
                 loading: false,
+                catch: false
             },1000).then(function(data){
                 if(!!data && !!data.data && !!data.data.obj){
                     // 数据已加载完，不再下拉加载新数据，且列表无更新
                     if(data.data.obj.pageNo == 1){scope.isInfiniteScroll = false;return;}
-
+                    
                     var obj = data.data.obj;
+
                     // 主数据
                     scope.data.list = !obj.list?scope.data.list:scope.data.list.concat(obj.list);
                     // 分页参数
@@ -154,13 +160,13 @@ angular.module('page',[])
                 scope.dataListLoading = -1; // 出错了
             }).finally(function(){
                 // 延迟这个广播对上拉加载效果提升明显
-                $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 1000);
+                $timeout(function() {scope.$broadcast('scroll.infiniteScrollComplete');}, 500);
             });
         };
     })
     /**
      * 列表加载动画（包括加载中、暂无数据、出错了等）
-     * paddingTop：自定义内部顶部边距（允许在原有基础上增减）
+     * paddingTop：自定义内部顶部边距（允许在默认paddingTop的基础上增减）
      */
     .directive('pageDatalistLoading', function(){
         return{
@@ -171,7 +177,7 @@ angular.module('page',[])
                             '<img class="page-data-list-infoimg" width="36%" ng-src="{{dataListLoading==\'0\'?\'img/zwjl.png\':\'img/error.png\'}}">{{paddingTop}}'+
                             '<div ng-style="{\'margin-top\':SCREEN.width*0.02+20+\'px\'}"><ion-spinner class="page-data-list-loading-ion" icon="bubbles"></ion-spinner></div>'+
                       '</div>',
-            controller: function($scope, $rootScope){
+            controller: function($scope, $rootScope, $timeout){
                 // null：加载成功并隐藏加载状态，-1：出错了 ，0：无数据，1：加载中，2：加载成功并隐藏加载状态，否则：展示出错了
                 $scope.$watch('dataListLoading',function(newValue){
                     $('.page-data-list-loading').css('display', '');
@@ -181,9 +187,13 @@ angular.module('page',[])
                     if(!newValue || newValue==2){
                         $('.page-data-list-loading').css('display', 'none');
                     }else if(newValue === -1 && !!$rootScope.httpStop){// 请求失败 、异常
-                        $('.page-data-list-infoimg').css('display', '');
+                        $timeout(function(){
+                            $('.page-data-list-infoimg').css('display', '');
+                        },600);
                     }else if(newValue === 0){
-                        $('.page-data-list-infoimg').css('display', '');
+                        $timeout(function(){
+                            $('.page-data-list-infoimg').css('display', '');
+                        },600);
                     }else if(newValue === 1){
                         $('.page-data-list-loading-ion').css('display', '');
                     }
@@ -193,6 +203,7 @@ angular.module('page',[])
     })
     /**
      * 页面底部显示分页属性或数据加载完成提示信息
+     * 描述：当isPage为true时，设置loadedTitle无效
      * isPage：true 显示分页属性，false 不显示分页属性
      * loadedTitle：数据加载完成时底部显示的提示信息
      */
@@ -205,20 +216,30 @@ angular.module('page',[])
                             '<div class="page-datalist-loaded-yespage text-center" style="line-height:25px; font-size:10px;color:#0f0f0f">已加载{{data.page.currentCount}}条，共{{data.page.totalCount}}条</div>'+
                             '<div class="page-datalist-loaded-nopage text-center" style="line-height:25px; font-size:10px;color:#0f0f0f" ng-bind="!loadedTitle?\'没有更多了！\':loadedTitle"></div>'+
                       '</div>',
-            controller: function($scope){
+            controller: function($scope, $rootScope, $timeout, $cordovaToast){
                 // 底部是否显示分页数据
-                $scope.$watch('isPage', function(valPage){
+                $scope.$watch('isPage', function(isPage){
                     $('.page-datalist-loaded-yespage').css('display', 'none');
                     $('.page-datalist-loaded-nopage').css('display', 'none');
-
                     // 是否显示总记录数，总记录数，当前记录数
-                    if(valPage){
-                        $('.page-datalist-loaded-yespage').css('display', '');
+                    if(!!isPage){
+                        $scope.$watch('httpStop', function(httpStop){
+                            $('.page-datalist-loaded-yespage').css('display', 'none');
+                            if(httpStop==undefined){
+                                // 避免第一次加载时短暂显示
+                            }else if(httpStop==null){
+                                $('.page-datalist-loaded-yespage').css('display', '');
+                            }
+                        });
                     }else{
                         // false：数据已加载完，true：数据未加载完
                         $scope.$watch('isInfiniteScroll',function(newValue){
                             if(newValue===false && !!$scope.data && !!$scope.data.list && $scope.data.list.length>0){
                                 $('.page-datalist-loaded-nopage').css('display', '');
+                                console.log('全部数据已加载');
+                                if(window.cordova){
+                                    $cordovaToast.showLongBottom(!$scope.loadedTitle?'没有更多了！':$scope.loadedTitle);
+                                }
                             } 
                         });
                     }

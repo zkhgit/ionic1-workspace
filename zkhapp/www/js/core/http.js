@@ -1,5 +1,5 @@
 /**
- * http配置
+ * HTTP配置
  */
 angular.module('http', [])
     .service('HTTP', function($q, $http,  $timeout, $rootScope, $ionicPopup, $cordovaToast, $ionicLoading, SETTING){
@@ -107,7 +107,7 @@ angular.module('http', [])
                     };
                 }
                 //6.2、异常展示
-                if (!config.catch || config.catch == true){
+                if ((!config.catch && config.catch!=false) || config.catch == true){
                     // 终止请求
                     shutdown(101, error.data.title);
                 }
@@ -127,7 +127,7 @@ angular.module('http', [])
         };
         
         var shutdown = function(status, msg){
-            // null/true：请求成功，101：请求失败，102右键终止
+            // null/true：请求成功，101：请求失败，102右键终止，103：刷新、下拉刷新或上拉加载
             if(!status || !$rootScope.httpStop){ // （自动）请求成功
             }else if(status===101){              // （手动）请求异常（或失败）
                 $ionicPopup.alert({
@@ -142,6 +142,8 @@ angular.module('http', [])
             }else if(status===102){             // （手动）右键终止
                 $rootScope.httpStop.resolve();
                 $cordovaToast.showLongBottom("请求已取消");
+            }else if(status===103){             // （自动）刷新、下拉刷新或上拉加载异常
+                $rootScope.httpStop.resolve();
             }
 
             // 必须放在最后

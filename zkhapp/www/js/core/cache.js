@@ -1,26 +1,26 @@
 /**
- * 缓存
+ * 页面缓存
  */
 angular.module('cache', [])
-    .service('CACHE', function(){ // flag为true，代表session缓存
+    .service('CACHE', function(){
         // 保存
-        this.save = function (key, value, flag) {// true时为session
+        this.save = function (key, value, flag) { // flag为true，代表session缓存
             if (!!flag) {
-                window.sessionStorage.setItem(key, typeof value == 'object' ? angular.toJson(value) : value);
+                window.sessionStorage.setItem(key, (value!=null && typeof(value) == 'object') ? angular.toJson(value) : value);
             } else {
-                window.localStorage.setItem(key, typeof value == 'object' ? angular.toJson(value) : value);
+                window.localStorage.setItem(key, (value!=null &&  typeof(value) == 'object') ? angular.toJson(value) : value);
             }
         };
         // 获取
-        this.get = function (key, flag) {
+        this.get = function (key, flag) { // flag为true，代表session缓存
             if (!!flag) {
-                return angular.fromJson(window.sessionStorage.getItem(key));
+                return window.sessionStorage.getItem(key)==''?'':angular.fromJson(window.sessionStorage.getItem(key));
             } else {
-                return angular.fromJson(window.localStorage.getItem(key));
+                return window.sessionStorage.getItem(key)==''?'':angular.fromJson(window.localStorage.getItem(key));
             }
         };
         // 移除指定缓存
-        this.remove = function (key, flag) {
+        this.remove = function (key, flag) { // flag为true，代表session缓存
             if (!!flag) {
                 window.sessionStorage.removeItem(key);
             } else {
@@ -28,7 +28,7 @@ angular.module('cache', [])
             }
         };
         // 清空session或local缓存
-        this.clear = function (flag) {
+        this.clear = function (flag) { // flag为true，代表session缓存
             if (!!flag) {
                 window.sessionStorage.clear();
             } else {
@@ -36,15 +36,15 @@ angular.module('cache', [])
             }
         };
         // 通过index获取缓存数据
-        var getKeyByIndex = function (index, flag) {
+        var getKeyByIndex = function (index, flag) { // flag为true，代表session缓存
             if (!!flag) {
                 return window.sessionStorage.key(index);
             } else {
                 return window.localStorage.key(index);
             }
         };
-        // session或local缓存的长度
-        var length = function (flag) {
+        // 缓存的长度
+        var length = function (flag) { // flag为true，代表session缓存
             if (!!flag) {
                 return window.sessionStorage.length;
             } else {
