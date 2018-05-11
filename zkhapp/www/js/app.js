@@ -235,6 +235,11 @@ angular.module('app', ['ionic','ngCordova','ionic-native-transitions', // 必选
             $rootScope.tomIonicPopup = null;
             return;
         }
+        // 拒绝右键取消请求
+        if(!!$rootScope.isRightKey){
+            $cordovaToast.showLongBottom("正在提交数据，请稍后再试！");
+            return;
+        }
         // 终止Ajax请求
         if(!!$rootScope.httpStop){
             HTTP.shutdown(102); // 终止请求

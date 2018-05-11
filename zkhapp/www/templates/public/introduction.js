@@ -24,6 +24,7 @@ angular.module('public_introduction_ctrl',[])
 			scope.TAB = TAB;
 			HTTP.send({
 				url: ACTION.public.getIntroduction,
+				loading:true
 			}).then(function(data){
 				scope.introduction = data.data.obj;
 				// 调整内容中的图片大小和位置

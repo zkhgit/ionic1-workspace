@@ -1,5 +1,8 @@
 /**
  * HTTP配置
+ * config.isRightKey=true 拒绝右键取消请求
+ * waitTime（单位：毫秒） 延迟请求时间
+ * loading=true 显示$ionicLoading加载动画
  */
 angular.module('http', [])
     .service('HTTP', function($q, $http,  $timeout, $rootScope, $ionicPopup, $cordovaToast, $ionicLoading, SETTING){
@@ -77,7 +80,10 @@ angular.module('http', [])
             //5、默认不缓存
             if (config.cache == true){ config.cache = true; }else{ config.cache = false; }
 
-            //6、异常处理
+            //6、拒绝右键取消请求
+            if(!!config.isRightKey){ $rootScope.isRightKey = true; }
+
+            //7、异常处理
             var http = $http(config);
             // 正常结束（成功或失败）
             http.then(function (data) {
@@ -115,6 +121,7 @@ angular.module('http', [])
             // 最终执行
             http.finally(function(){
                 $ionicLoading.hide();
+                $rootScope.isRightKey = null;
             });
 
             return http;
