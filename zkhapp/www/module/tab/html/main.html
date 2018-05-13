@@ -1,0 +1,52 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-title>欢迎进入科技投融资平台</ion-nav-title>
+    </ion-nav-bar>
+    <!-- 科技动态 -->
+    <ion-content overflow-scroll="false" scroll="false">
+        
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" ng-model="tomIp" placeholder="IP：192.168.0.110">
+            </label>
+            <label class="item item-input">
+                <input type="text" ng-model="port" placeholder="端口号：8080">
+            </label>
+            
+            <button class="button button-full button-positive" ng-click="setIp(tomIp, port)">设置服务器</button>
+        </div>
+        
+        <br>
+        
+        <div class="row">
+            <div align="center" class="col" ui-sref="tab.introduction">
+                <div class='button border-clear'>关于平台</div>
+            </div>
+        </div>
+
+        <br>
+        
+        <div class="row">
+            <div align="center" class="col" ui-sref="tab.news">
+                <div class='button border-clear'>新闻动态</div>
+            </div>
+            <div align="center" class="col" ui-sref="tab.science">
+                <div class='button border-clear'>科技动态</div>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="row">
+            <div align="center" class="col" ui-sref="tab.notice">
+                <div class='button border-clear'>通知公告</div>
+            </div>
+            <div align="center" class="col" ui-sref="tab.policy">
+                <div class='button border-clear'>政策法规</div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

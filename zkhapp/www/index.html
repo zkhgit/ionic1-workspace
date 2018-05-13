@@ -1,4 +1,68 @@
 <!DOCTYPE html>
-<html><head><script>window.location='main.html';</script></head><body></body></html>
+<html ng-controller="appController">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>足信</title>
 
-<!--  index.html加载的内容较多时容易出现Android App启动错误的问题（connection to the server was unsuccessful） -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- 第三方组件_表单验证样式 start-->
+    <link rel="stylesheet" href="component/validator/w5cValidator.css">
+    <!-- 第三方组件_表单验证样式 end-->
+    
+    <!-- ionic自带UI样式库 start-->
+    <link href="component/ionic/css/ionic.css" rel="stylesheet">
+    <!-- ionic自带UI样式库 end-->
+
+    <!-- 项目中自定义的公用样式 start-->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- 项目中自定义的公用样式 end-->
+
+    <!-- 工具型JS文件 start-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="component/ionic/js/ionic.bundle.js"></script>
+    <script type="text/javascript" src="component/oc-lazyload/ocLazyLoad.min.js"></script>
+    <script type="text/javascript" src="component/ng-cordova/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="component/ionic-native-transitions/ionic-native-transitions.min.js"></script>
+      <!-- 第三方组件 start-->
+      <script type="text/javascript" src="component/jquery/jquery-1.8.3.js"></script>
+      <script type="text/javascript" src="component/validator/w5cValidator.js"></script>
+      <script type="text/javascript" src="component/date/ionic-datepicker.bundle.min.js"></script>
+      <script type="text/javascript" src="component/upload/ng-file-upload.js"></script>
+      <script type="text/javascript" src="component/upload/ng-file-upload-shim.js"></script>
+      <script type="text/javascript" src="component/chart/Chart.min.js"></script>
+      <script type="text/javascript" src="component/chart/angular-chart.js"></script>
+      <!-- 第三方组件 end-->
+    <!-- 工具型JS文件 end-->
+
+    <!-- 项目中自己开发的JS代码 start-->
+        <!-- 公用、配置型JS代码 start-->
+        <script type="text/javascript" src="base/app.js"></script>
+        <script type="text/javascript" src="base/app.route.js"></script>
+        <script type="text/javascript" src="base/constant.js"></script>
+        <script type="text/javascript" src="base/directive.js"></script>
+        <script type="text/javascript" src="base/factory.js"></script>
+        <script type="text/javascript" src="base/filter.js"></script>
+        <script type="text/javascript" src="base/provider.js"></script>
+        <script type="text/javascript" src="base/service.js"></script>
+        <script type="text/javascript" src="base/value.js"></script>
+        <script type="text/javascript" src="base/util/common.js"></script>
+        <script type="text/javascript" src="base/util/cache.js"></script>
+        <script type="text/javascript" src="base/util/http.js"></script>
+        <!-- 公用、配置型JS代码 end-->
+        
+        <!-- 针对于对应模块路由配置 start-->
+            <script type="text/javascript" src="module/tab/tabRoute.js"></script>
+            <!-- 公共门户 start-->
+            <script type="text/javascript" src="module/public/publicRoute.js"></script>
+            <!-- 公共门户 end-->
+        <!-- 针对于对应模块路由配置 end-->
+
+    <!-- 项目中自己开发的JS代码 end-->
+  </head>
+  <body>
+    <ion-nav-view><ion-view></ion-view></ion-nav-view>
+  </body>
+  <script>angular.bootstrap(document, ['app']);</script>
+</html>

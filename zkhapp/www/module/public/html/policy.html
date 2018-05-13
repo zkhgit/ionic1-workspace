@@ -1,0 +1,32 @@
+
+<ion-view>
+
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>政策法规</ion-nav-title>
+    </ion-nav-bar>
+
+    <!-- 政策法规 -->
+    <ion-content overflow-scroll="false" has-bouncing="true">
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="doRefresh()" pulling-text="读取" refreshing-text="智能读取中" pulling-icon="ion-android-refresh" spinner="ripple"></ion-refresher>
+        <page-datalist-loading></page-datalist-loading>
+        <!--下拉刷新-->
+
+        <ion-list>
+            <ion-item class="item item-icon-right" 
+                ng-repeat = "acticle in dataList" 
+                ui-sref = "tab.acticle({id: acticle.id})">
+
+                <h2 style="font-size:14px;margin-left:10px;">{{acticle.title}}</h2>
+                <span style="font-size:10px;color:#0f0f0f;margin-left:10px;">{{acticle.createDate | limitTo:10}}</span>
+                <i class="icon ion-ios-arrow-right" style="font-size: 20px;"></i>
+            </ion-item>
+        </ion-list>
+
+        <!--上拉加载-->
+        <page-datalist-loaded ng-init="loadedTitle='政策法规加载完成';"></page-datalist-loaded>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="30%" ng-if="isInfiniteScroll" immediate-check="false" spinner="dots"></ion-infinite-scroll> 
+        <!--上拉加载-->
+    </ion-content>
+</ion-view>
