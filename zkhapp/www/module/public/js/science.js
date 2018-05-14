@@ -11,9 +11,9 @@ angular.module('app')
             PAGE.loadMore($scope);
         };
     })
-    .service('scienceService', function(PAGE, ACTION){
+    .service('scienceService', function(PAGE){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 103});
+            PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 103});
         };
     });

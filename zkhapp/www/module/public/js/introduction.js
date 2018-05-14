@@ -6,11 +6,11 @@ angular.module('app')
 			introductionService.loading($scope);
 		};
 	})
-	.service('introductionService', function(HTTP, ACTION){
+	.service('introductionService', function(HTTP){
 		// 初始化加载
 		this.loading = function(scope){
 			HTTP.send({
-				url: ACTION.public.getIntroduction,
+				url: 'app/cms/getIntroduction',
 				// loading:true
 			}).then(function(data){
 				scope.introduction = data.data.obj;

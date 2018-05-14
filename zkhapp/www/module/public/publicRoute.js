@@ -29,7 +29,8 @@ angular.module('app.route').config(function($stateProvider){
                     resolve:{
                         load:function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
-                                'module/public/js/introduction.js'
+                                'module/public/js/introduction.js',
+                                'core/filter/trustHtml.js'
                             ]);
                         }
                     }

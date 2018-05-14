@@ -1,9 +1,9 @@
 /**
- * 分页配置
+ * 查询数据列表（含分页）
  */
-angular.module('page',[])
+angular.module('app')
     // 数据列表的上拉加载、下拉刷新
-    .service('PAGE', function($timeout, $rootScope, $ionicScrollDelegate, HTTP, ACTION, CACHE, SETTING, COMMON){
+    .service('PAGE', function($timeout, $rootScope, $ionicScrollDelegate, HTTP, CACHE, SETTING, COMMON){
         // 初始化分页参数
         this.init = function(scope){
             init(scope);

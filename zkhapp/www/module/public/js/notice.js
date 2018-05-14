@@ -11,9 +11,9 @@ angular.module('app')
             PAGE.loadMore($scope);
         };
     })
-    .service('noticeService', function(PAGE, ACTION){
+    .service('noticeService', function(PAGE){
         this.loading = function(scope){
             // 获取列表
-            PAGE.isRefresh(scope, ACTION.public.list, true, {categoryId: 201});
+            PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 201});
         };
     })

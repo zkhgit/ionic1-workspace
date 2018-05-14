@@ -1,15 +1,7 @@
-
-angular.module('filter',[])
-    // angularJS绑定数据时自动转义html标签
-    .filter('trustHtml', function ($sce) {
-
-        return function (input) {
-            var html = $sce.trustAsHtml(input);
-            return html;
-        };
-
-    })
-    // 给定时间距离当前时间
+/**
+ * 给定时间距离当前时间
+ */
+angular.module('app')
     .filter('timeCustom', function(){
         return function (timeStr) {
             var oldTime = (new Date(timeStr)).getTime(); //得到毫秒数

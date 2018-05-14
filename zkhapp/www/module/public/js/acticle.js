@@ -3,11 +3,11 @@ angular.module('app')
 		// 初始化加载
 		acticleService.loading($scope, $stateParams.id);
 	})
-	.service('acticleService', function(HTTP, ACTION, commonService){
+	.service('acticleService', function(HTTP, COMMON){
 		// 初始化加载
 		this.loading = function(scope, id){
 			// 初始化参数配置
-			commonService.init(scope);
+			COMMON.init(scope);
 			// 获取文章内容
 			getContent(scope, id);
 		};
@@ -15,7 +15,7 @@ angular.module('app')
 		// 通过文章id获取文章内容
 		var getContent = function(scope, id){
 			HTTP.send({
-				url: ACTION.public.getContent,
+				url: 'app/cms/getContent',
 				params:{
 					id: id
 				}
