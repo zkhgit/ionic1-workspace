@@ -132,7 +132,8 @@ angular.module('app.route', [])
                 {// 公共门户
                     name:'module-rotue', 
                     files:[
-                        'module/public/publicRoute.js'                        
+                        'module/public/publicRoute.js',
+                        'module/demo/demoRoute.js'                       
                     ]
                 },
                 /** module/**Route.js功能模块路由 ***********************************************/

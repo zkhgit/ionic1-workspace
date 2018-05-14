@@ -5,7 +5,7 @@ angular.module('app')
     .config(function ($ionicNativeTransitionsProvider) {
         /** 2、调用原生页面切换效果******************************************************/
         $ionicNativeTransitionsProvider.setDefaultOptions({
-            duration: 3990, // 页面切换动画时长（毫秒）
+            duration: 290, // 页面切换动画时长（毫秒）
             slowdownfactor: 4, // 重叠视图（更高的数字是更多）或没有重叠（1），默认为4。
             iosdelay: -1, // 等待iOS webview在动画开始前更新, 默认 -1
             androiddelay: -1, // 与上面相同，但对于Android, 默认 -1

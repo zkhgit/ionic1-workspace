@@ -13,8 +13,7 @@ angular.module('app')
 			},
 			link: function(scope, element, attr, ctrl) {
 				$ocLazyLoad.load([
-					'bower_components/mobiscroll/css/mobiscroll.custom-3.0.0-beta6.min.css',
-					'bower_components/mobiscroll/js/mobiscroll.custom-3.0.0-beta6.min.js'
+					'mobiscroll'
 				]).then(function() {
 					element = $(element[0]);
 

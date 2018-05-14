@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('science', function($scope, scienceService, PAGE){
+    .controller('scienceController', function($scope, scienceService, PAGE){
         // 初始化加载
         scienceService.loading($scope);
         // 下拉刷新

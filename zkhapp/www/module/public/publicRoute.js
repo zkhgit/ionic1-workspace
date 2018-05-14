@@ -4,7 +4,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/acticle?id',
             views: {
                 'main': {
-                    controller:'acticle',
+                    controller:'acticleController',
                     templateUrl:function(){
                         return 'module/public/html/acticle.html';
                     },
@@ -23,7 +23,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/introduction',
             views: {
                 'main': {
-                    controller:'introduction',
+                    controller:'introductionController',
                     templateUrl:function(){
                         return 'module/public/html/introduction.html';
                     },
@@ -42,7 +42,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/news',
             views: {
                 'main': {
-                    controller:'news',
+                    controller:'newsController',
                     templateUrl:function(){
                         return 'module/public/html/news.html';
                     },
@@ -60,7 +60,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/notice',
             views: {
                 'main': {
-                    controller:'notice',
+                    controller:'noticeController',
                     templateUrl:function(){
                         return 'module/public/html/notice.html';
                     },
@@ -78,7 +78,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/policy',
             views: {
                 'main': {
-                    controller:'policy',
+                    controller:'policyController',
                     templateUrl:function(){
                         return 'module/public/html/policy.html';
                     },
@@ -96,7 +96,7 @@ angular.module('app.route').config(function($stateProvider){
             url: '/public/science',
             views: {
                 'main': {
-                    controller:'science',
+                    controller:'scienceController',
                     templateUrl:function(){
                         return 'module/public/html/science.html';
                     },

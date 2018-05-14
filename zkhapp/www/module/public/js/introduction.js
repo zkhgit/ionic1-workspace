@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('introduction', function($scope, introductionService){
+    .controller('introductionController', function($scope, introductionService){
 		// 初始化加载
 		introductionService.loading($scope);
 		$scope.doRefresh = function(){

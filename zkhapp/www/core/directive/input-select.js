@@ -12,8 +12,7 @@ angular.module('app')
             },
             link: function(scope, element, attr, ctrl) {
                 $ocLazyLoad.load([
-                    'component/mobiscroll/css/mobiscroll.custom-3.0.0-beta6.min.css',
-                    'component/mobiscroll/js/mobiscroll.custom-3.0.0-beta6.min.js'
+                    'mobiscroll'
                 ]).then(function() {
                     element = $(element[0]);
                     var selectData = [{text:'',value:''}];

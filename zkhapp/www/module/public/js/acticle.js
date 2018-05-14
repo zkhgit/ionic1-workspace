@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('acticle', function($scope, $stateParams, acticleService){
+	.controller('acticleController', function($scope, $stateParams, acticleService){
 		// 初始化加载
 		acticleService.loading($scope, $stateParams.id);
 	})

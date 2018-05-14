@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('notice', function($scope, noticeService, PAGE){
+    .controller('noticeController', function($scope, noticeService, PAGE){
         // 初始化加载
         noticeService.loading($scope);
         // 下拉刷新

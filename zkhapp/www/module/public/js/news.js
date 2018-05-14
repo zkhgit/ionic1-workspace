@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('news', function($scope, $rootScope, $ionicPopup, newsService, PAGE){
+    .controller('newsController', function($scope, $rootScope, $ionicPopup, newsService, PAGE){
         // 初始化加载
         newsService.loading($scope);
         // 下拉刷新
