@@ -61,6 +61,14 @@ angular.module('app.route', [])
 
 
                 /** component组件 ***************************************************************/
+                {// AngularJS树组件
+                    name:'angular-tree-control',
+                    files:[
+                        'component/angular-tree-control/css/tree-control.css',
+                        'component/angular-tree-control/css/tree-control-attribute.css',
+                        'component/angular-tree-control/js/angular-tree-control.js',
+                    ]
+                },
                 {// 图表
                     name:'chart', 
                     files:[

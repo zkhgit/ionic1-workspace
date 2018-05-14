@@ -1,0 +1,20 @@
+<ion-view>
+
+    <ion-nav-bar class="bar-positive light">
+        <ion-nav-back-button></ion-nav-back-button>
+        <ion-nav-title>树结构</ion-nav-title>
+    </ion-nav-bar>
+
+    <ion-content class="padding" overflow-scroll="false" has-bouncing="true">
+        <h5>基础树</h5>
+        <!-- order-by="order"：排序通过$scope.order='age'，reverse-order="false"：正序排，true：倒序排 -->
+        <!-- filter-expression="predicate"：过滤器公式， filter-comparator="comparator"：是否完全匹配(大小写) -->
+        <treecontrol class="tree-classic" tree-model="dataForTheTree" options="options"
+            order-by="order" reverse-order="false" on-selection="showSelect(node, selected)"
+            filter-expression="predicate" filter-comparator="comparator">  
+            employee: {{node.name}} age {{node.age}}  
+        </treecontrol> 
+
+    </ion-content>
+
+</ion-view>
