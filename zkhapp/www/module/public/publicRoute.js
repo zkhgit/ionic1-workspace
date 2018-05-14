@@ -11,7 +11,8 @@ angular.module('app.route').config(function($stateProvider){
                     resolve:{
                         load:function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
-                                'module/public/js/acticle.js'
+                                'module/public/js/acticle.js',
+                                'core/filter/trustHtml.js'
                             ]);
                         }
                     }

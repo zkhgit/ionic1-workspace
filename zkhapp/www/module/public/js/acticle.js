@@ -7,7 +7,7 @@ angular.module('app')
 		// 初始化加载
 		this.loading = function(scope, id){
 			// 初始化参数配置
-			COMMON.init(scope);
+			COMMON.scopeInit(scope);
 			// 获取文章内容
 			getContent(scope, id);
 		};

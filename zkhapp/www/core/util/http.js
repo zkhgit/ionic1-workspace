@@ -5,7 +5,7 @@
  * loading=true 显示$ionicLoading加载动画
  */
 angular.module('http', [])
-    .service('HTTP', function($q, $http,  $timeout, $rootScope, $ionicPopup, $cordovaToast, $ionicLoading, SETTING){
+    .service('HTTP', function($q, $http,  $timeout, $rootScope, $ionicPopup, $cordovaToast, $ionicLoading, PATH, SETTING){
         //模板展示
         //$http({
         //    method: string,
@@ -34,7 +34,7 @@ angular.module('http', [])
 
         var send = function (config) {
             // 拼接完成请求路径
-            config.url = $rootScope.DOMAIN_NAME + config.url;
+            config.url = PATH.DOMAIN_NAME + config.url;
             // 网络状况检查
             if(window.cordova){
                 if (navigator.connection.type == "none") {

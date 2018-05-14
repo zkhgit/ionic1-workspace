@@ -139,11 +139,6 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
         return false;
     }, 501); // $ionicLoading优先级为500，貌似是默认里最大的了
     /** 2、物理返回按钮控制&双击退出应用******************************************/
-    
-    /** 3、初始化全局变量******************************************/
-    $rootScope.PATH = 'http://192.168.0.241:8080'; //测试IP 192.168.3.7
-    $rootScope.DOMAIN_NAME = $rootScope.PATH + '/kjtrzpt/';
-    /** 3、初始化全局变量******************************************/
 
 })
 .controller('appController', function($scope,$ocLazyLoad){
