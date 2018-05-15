@@ -1,7 +1,7 @@
 /**
  * 表单验证配置
  */
-angular.module('app')
+angular.module('tomValidator',[])
     .config(["w5cValidatorProvider", function (w5cValidatorProvider) {
         // 全局配置
         w5cValidatorProvider.config({
@@ -34,8 +34,10 @@ angular.module('app')
             //      required: "动态元素不能为空"
             // },
         });
+    }]);
 
-        /**验证失败时的信息提示方式、错误信息移除方式 ------------------------------------*/
+    /**以下必须是全局方法 */
+    /**验证失败时的信息提示方式、错误信息移除方式 ------------------------------------*/
         // 错误提示方式
         var showError = function(elem, errorMessages){
             var $elem = angular.element(elem),
@@ -66,12 +68,13 @@ angular.module('app')
                 if ($group.hasClass("has-error-lr")){
                 $group.removeClass("has-error-lr");
                 }
+
+                var $next = $group.next();
+                if (!$next || $next.hasClass("form-errors")) {
+                    $next.remove();
+                }
             }
 
-            var $next = $group.next();
-            if (!$next || $next.hasClass("form-errors")) {
-                $next.remove();
-            }
         };
 
         var getParentGroup = function (elem) {
@@ -95,4 +98,3 @@ angular.module('app')
             return false;
         };
         /**验证失败时的信息提示方式、错误信息移除方式 ------------------------------------*/
-    }]);

@@ -1,0 +1,222 @@
+<ion-view>
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>表单二</ion-nav-title>
+    </ion-nav-bar>
+
+    <form name="validator11" w5c-form-validate="vm.validateOptions">
+        <ion-content overflow-scroll="false" has-bouncing="true">
+            <div class="card list">
+
+                <div class="item item-divider">
+                    登录名
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.loginName" placeholder="请输入登录名" ng-maxlength="50" name="loginName" required>
+                </label>
+
+                <div class="item item-divider">
+                    密码
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="password" ng-model="user.newPassword" placeholder="请输入密码" name="password" ng-minlength="3" ng-maxlength="50" required>
+                </label>
+
+                <div class="item item-divider">
+                    确认密码
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="password" ng-model="user.confirmNewPassword" placeholder="请确认密码" name="repeatPassword" w5c-repeat="password" required>
+                </label>
+
+                <div class="item item-divider">
+                    姓名
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.name" placeholder="请输入姓名" name="name" ng-maxlength="50" required>
+                </label>
+
+                <div class="item item-divider">
+                    性别
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="temp.sex" ng-init="temp.sex='男'" readonly ng-click="modal_sex.show()" placeholder="请选择性别" name="sex" required>
+                    <input type="hidden" ng-model="user.sex" ng-init="user.sex='1'">
+                </label>
+
+                <div class="item item-divider">
+                    所属部门
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.office.name" readonly ng-click="findAllDepartments()" placeholder="请选择所属部门" name="office" required>
+                    <input type="hidden" ng-model="user.office.id" readonly>
+                </label>
+
+                <div class="item item-divider">
+                    工作单位名称
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <div class="item item-input ">
+                    <input type="text" ng-model="user.tpyCompany" placeholder="请输入或选择单位名称" name="tpyCompany" required>
+                    <i class="icon ion-arrow-down-b" style="padding: 3px 20px 3px 20px" ng-click="modal_tpy_tpyCompany.show()"></i>
+                </div>
+
+                <div class="item item-divider">工作部门</div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyDept" placeholder="请输入工作部门" name="tpyDept" ng-maxlength="50">
+                </label>
+
+                <div class="item item-divider">职位</div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyPosition" placeholder="请输入职位" name="tpyPosition" ng-maxlength="50">
+                </label>
+
+                <div class="item item-divider">
+                    职称
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="temp.tpyTitle" readonly ng-click="modal_tpy_tpyTitle.show()" placeholder="请输入职称" name="tpyTitle" required>
+                    <input type="hidden" ng-model="user.tpyTitle">
+                </label>
+
+                <div class="item item-divider">
+                    学历
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="temp.tpyQulification" readonly ng-click="modal_tpy_tpyQulification.show()" placeholder="请输入学历" name="tpyQulification" required>
+                    <input type="hidden" ng-model="user.tpyQulification">
+                </label>
+
+                <div class="item item-divider">
+                    籍贯
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyLocation" placeholder="请输入籍贯" name="tpyLocation" ng-maxlength="50" required>
+                </label>
+
+                <div class="item item-divider">出生日期</div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyBirthDate" placeholder="请输入出生日期" ng-click="openTpyBirthDate()" name="tpyBirthDate" readonly>
+                </label>
+
+                <div class="item item-divider">
+                    身份证号
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyIdcard" placeholder="请输入身份证号" name="tpyIdcard" ng-maxlength="20" ng-pattern="/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/" required>
+                </label>
+
+                <div class="item item-divider">
+                    Email
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="email" ng-model="user.email" placeholder="请输入Email" name="email" ng-maxlength="100" required>
+                </label>
+
+                <div class="item item-divider">座机</div>
+                <label class="item item-input">
+                    <input type="tel" ng-model="user.phone" placeholder="请输入座机号" name="phone"  ng-maxlength="50">
+                </label>
+
+                <div class="item item-divider">
+                    手机
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="tel" ng-model="user.mobile" placeholder="请输入手机号" name="mobile" ng-maxlength="50" required>
+                </label>
+
+                <div class="item item-divider">参加工作时间</div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyBeginWorkDate" placeholder="请输入参加工作时间" ng-click="openTpyBeginWorkDate()" name="tpyBirthDate" readonly>
+                </label>
+
+                <div class="item item-divider">邮编</div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyPostCode" placeholder="请输入邮编" name="tpyPostCode">
+                </label>
+
+                <div class="item item-divider">
+                    专业名称
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.tpyMajor" readonly ng-click="modal_tpy_tpyMajor.show()" placeholder="请选择专业" name="tpyMajor" required>
+                </label>
+
+                <div class="item item-divider">
+                    专业特长
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <textarea ng-model="$parent.user.tpySpecial" style="width: 98%;height: 100px;" placeholder="请输入专业特长" name="tpySpecial" ng-maxlength="200" required></textarea>
+                </label>
+
+                <div class="item item-divider">
+                    通信地址
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <textarea ng-model="$parent.user.tpyAddress" style="width: 98%;height: 100px;" placeholder="请输入通讯地址" name="tpyAddress" ng-maxlength="200" required></textarea>
+                </label>
+
+                <div class="item item-divider">
+                    银行账号
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.bankAccount" placeholder="请输入银行账户" name="bankAccount" ng-minlength="16" ng-maxlength="19" ng-pattern="/^\d*$/" required>
+                </label>
+
+                <div class="item item-divider">
+                    开户名
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <input type="text" ng-model="user.bankName" placeholder="请输入开户名" name="bankName" ng-maxlength="100" required>
+                </label>
+
+                <div class="item item-divider">
+                    开户行
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <label class="item item-input">
+                    <textarea ng-model="$parent.user.bankOpen" style="width: 98%;height: 100px;" placeholder="请输入开户行" name="bankOpen" ng-maxlength="200" required></textarea>
+                </label>
+                
+
+                <!-- 上传图片 -->
+                <div class="item item-divider">
+                    上传图片
+                    <span class="icon ion-asterisk assertive" style="font-size: 13px;"></span>
+                </div>
+                <div class="row">
+                    <div class="col card text-center">
+                        <img class="img-responsive" ng-init="photo.a='img/avatar.png'" ng-src="{{photo.a}}" ng-click="choosePhoto('a')" style="width:150px; height:150px;">
+                        <div class="item tabs tabs-secondary tabs-icon-left">
+                            <a class="tab-item" ng-click="photo.a='img/avatar.png'">
+                                <i class="icon ion-ios-close-outline" ng-class="{'assertive': photo.a!='img/avatar.png'}"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 上传图片 -->
+            </div>
+        </ion-content>
+
+        <div class="padding text-center tom-bottom-button" style="height:55px;">
+            <button class="button button-block button-positive" style="margin-top: -5px;height:50px;font-size: 16px;" w5c-form-submit="tomSubmit()">提交</button>
+        </div>
+    </form>
+</ion-view>

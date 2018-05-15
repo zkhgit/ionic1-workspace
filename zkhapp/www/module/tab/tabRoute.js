@@ -12,7 +12,7 @@ angular.module('app.route')
                 url: '/main',
                 views:{
                     'main':{
-                        controller:'mainController',
+                        controller:'mainCtrl',
                         templateUrl:function(){
                             return 'module/tab/html/main.html';
                         },

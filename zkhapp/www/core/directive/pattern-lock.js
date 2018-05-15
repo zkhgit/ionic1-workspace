@@ -73,7 +73,7 @@ angular.module('app')
 							}else{
 								if(scope.lock.prevPattern){
 									if(scope.lock.prevPattern==newPattern){
-										CACHE.set('pattern',newPattern);
+										CACHE.save('pattern',newPattern);
 										$timeout.cancel(timer);
 										scope.lock = {
 											prevPattern:null,

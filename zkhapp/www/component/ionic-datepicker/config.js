@@ -1,7 +1,7 @@
 /**
  * 日期选择控件配置
  */
-angular.module('app')
+angular.module('tomIonicDatePicker',[])
     .config(function(ionicDatePickerProvider){
         var datePickerObj = {  
             inputDate: new Date(),  

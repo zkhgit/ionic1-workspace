@@ -147,7 +147,7 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             'animate',
             'ionic-native-transitions',
             'module-rotue',
-            'page'
+            'page',
         ]);
     })();
 });

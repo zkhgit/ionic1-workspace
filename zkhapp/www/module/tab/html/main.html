@@ -2,6 +2,9 @@
 <ion-view>
 
     <ion-nav-bar class="bar-positive light">
+      <ion-nav-buttons side="left">
+        <button class="button button-positive icon ion-ios-flask-outline" ui-sref="tab.demoMain"></button>
+      </ion-nav-buttons>
       <ion-nav-title>欢迎进入科技投融资平台</ion-nav-title>
     </ion-nav-bar>
     <!-- 科技动态 -->
@@ -17,39 +20,31 @@
             
             <button class="button button-full button-positive" ng-click="setIp(tomIp, port)">设置服务器</button>
         </div>
-        
-        <div class="row">
-            <div align="center" class="col" ui-sref="tab.form">
-                <div class='button border-clear'>表单</div>
-            </div>
-            <div align="center" class="col" ui-sref="tab.menu">
-                <div class='button border-clear'>菜单项</div>
-            </div>
-            <div align="center" class="col" ui-sref="tab.tree">
-                    <div class='button border-clear'>树结构</div>
-                </div>
-        </div>
 
         <div class="row">
-            <div align="center" class="col" ui-sref="tab.introduction">
+            <div align="center" class="col" ui-sref="tab.publicIntroduction">
                 <div class='button border-clear'>关于平台</div>
             </div>
         </div>
+        
+        <br>
 
         <div class="row">
-            <div align="center" class="col" ui-sref="tab.news">
+            <div align="center" class="col" ui-sref="tab.publicNews">
                 <div class='button border-clear'>新闻动态</div>
             </div>
-            <div align="center" class="col" ui-sref="tab.science">
+            <div align="center" class="col" ui-sref="tab.publicScience">
                 <div class='button border-clear'>科技动态</div>
             </div>
         </div>
         
+        <br>
+
         <div class="row">
-            <div align="center" class="col" ui-sref="tab.notice">
+            <div align="center" class="col" ui-sref="tab.publicNotice">
                 <div class='button border-clear'>通知公告</div>
             </div>
-            <div align="center" class="col" ui-sref="tab.policy">
+            <div align="center" class="col" ui-sref="tab.publicPolicy">
                 <div class='button border-clear'>政策法规</div>
             </div>
         </div>

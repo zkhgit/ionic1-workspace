@@ -1,10 +1,10 @@
 angular.module('app.route').config(function($stateProvider){
     $stateProvider
-        .state('tab.acticle', { // 内容
+        .state('tab.publicActicle', { // 内容
             url: '/public/acticle?id',
             views: {
                 'main': {
-                    controller:'acticleController',
+                    controller:'publicActicleCtrl',
                     templateUrl:function(){
                         return 'module/public/html/acticle.html';
                     },
@@ -19,11 +19,11 @@ angular.module('app.route').config(function($stateProvider){
                 }
             }
         })
-        .state('tab.introduction', { // 关于平台
+        .state('tab.publicIntroduction', { // 关于平台
             url: '/public/introduction',
             views: {
                 'main': {
-                    controller:'introductionController',
+                    controller:'publicIntroductionCtrl',
                     templateUrl:function(){
                         return 'module/public/html/introduction.html';
                     },
@@ -38,11 +38,11 @@ angular.module('app.route').config(function($stateProvider){
                 }
             }
         })
-        .state('tab.news', { // 新闻动态
+        .state('tab.publicNews', { // 新闻动态
             url: '/public/news',
             views: {
                 'main': {
-                    controller:'newsController',
+                    controller:'publicNewsCtrl',
                     templateUrl:function(){
                         return 'module/public/html/news.html';
                     },
@@ -56,11 +56,11 @@ angular.module('app.route').config(function($stateProvider){
                 }
             }
         })
-        .state('tab.notice', { // 通知公告
+        .state('tab.publicNotice', { // 通知公告
             url: '/public/notice',
             views: {
                 'main': {
-                    controller:'noticeController',
+                    controller:'publicNoticeCtrl',
                     templateUrl:function(){
                         return 'module/public/html/notice.html';
                     },
@@ -74,11 +74,11 @@ angular.module('app.route').config(function($stateProvider){
                 }
             }
         })
-        .state('tab.policy', { // 政策法规
+        .state('tab.publicPolicy', { // 政策法规
             url: '/public/policy',
             views: {
                 'main': {
-                    controller:'policyController',
+                    controller:'publicPolicyCtrl',
                     templateUrl:function(){
                         return 'module/public/html/policy.html';
                     },
@@ -92,11 +92,11 @@ angular.module('app.route').config(function($stateProvider){
                 }
             }
         })
-        .state('tab.science', { // 科技动态
+        .state('tab.publicScience', { // 科技动态
             url: '/public/science',
             views: {
                 'main': {
-                    controller:'scienceController',
+                    controller:'publicScienceCtrl',
                     templateUrl:function(){
                         return 'module/public/html/science.html';
                     },

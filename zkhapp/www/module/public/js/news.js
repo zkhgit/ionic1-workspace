@@ -1,7 +1,7 @@
 angular.module('app')
-    .controller('newsController', function($scope, $rootScope, $ionicPopup, newsService, PAGE){
+    .controller('publicNewsCtrl', function($scope, $rootScope, $ionicPopup, publicNewsService, PAGE){
         // 初始化加载
-        newsService.loading($scope);
+        publicNewsService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             PAGE.doRefresh($scope);
@@ -29,7 +29,7 @@ angular.module('app')
             
         };
     })
-    .service('newsService', function(PAGE){
+    .service('publicNewsService', function(PAGE){
         this.loading = function(scope){
             // 获取列表
             PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 203});

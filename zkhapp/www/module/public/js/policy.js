@@ -1,7 +1,7 @@
 angular.module('app')
-    .controller('policyController', function($scope, policyService, PAGE){
+    .controller('publicPolicyCtrl', function($scope, publicPolicyService, PAGE){
         // 初始化加载
-        policyService.loading($scope);
+        publicPolicyService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             PAGE.doRefresh($scope);
@@ -11,7 +11,7 @@ angular.module('app')
             PAGE.loadMore($scope);
         };
     })
-    .service('policyService', function(PAGE){
+    .service('publicPolicyService', function(PAGE){
         this.loading = function(scope){
             // 获取列表
             PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 202});

@@ -1,0 +1,56 @@
+<ion-view>
+    
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>演示</ion-nav-title>
+    </ion-nav-bar>
+
+    <ion-content class="has-header">
+        
+        <!-- 功能菜单 -->
+        <table class="tom-table">
+            <tr>
+                <td>
+                    <div ui-sref="tab.demoForm">
+                        <i class="ion-ios-list" style="color:#32cd32; font-size:25px;"></i><br/>
+                        <span class="font-size-12">表单一</span>
+                    </div>
+                </td>
+                <td>
+                    <div ui-sref="tab.demoValidator">
+                        <i class="ion-ios-list" style="color:#32cd32; font-size:25px;"></i><br/>
+                        <span class="font-size-12">表单二</span>
+                    </div>
+                </td>
+                <td ui-sref="tab.demoMenu">
+                    <div>
+                        <i class="ion-ios-folder" style="color:#87cefa"></i><br/>
+                        <span class="font-size-12">手风琴</span>
+                    </div>
+                </td>
+                <td ui-sref="tab.demoTree">
+                    <div>
+                        <i class="ion-leaf" style="color:#da70d6"></i><br/>
+                        <span class="font-size-12">树</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td ui-sref="tab.demoLoading">
+                    <div>
+                        <i class="ion-load-d" style="color:#da70d6"></i><br/>
+                        <span class="font-size-12">加载动画</span>
+                    </div>
+                </td>
+                <td ng-click="patternLockModal.show()">
+                    <div>
+                        <i class="ion-unlocked" style="color:#da70d6"></i><br/>
+                        <span class="font-size-12">手势解锁</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </ion-content>
+
+</ion-view>

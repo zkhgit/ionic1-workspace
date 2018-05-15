@@ -1,12 +1,14 @@
 <ion-view>
-    <div class="bar bar-header bar-calm">
-        <h1 class="title">菜单项</h1>
-    </div>
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>手风琴菜单</ion-nav-title>
+    </ion-nav-bar>
+
     <ion-content class="has-header">
         <ul class="list menus">
             <div ng-repeat="menu in menus">
                 <li class="item" ng-class="{active:shownMenu == menu}" ng-click="toggleMenu(menu)"><i class="icon" ng-class="{'ion-plus-round':shownMenu != menu,'ion-minus-round':shownMenu == menu}"></i> {{menu.name}}</li>
-                <li ng-show="isMenuShown(menu)" ng-repeat="menu2 in menu.menus" ui-sref="{{menu2.state}}" class="item item-accordion">
+                <li ng-show="isMenuShown(menu)" ng-repeat="menu2 in menu.menus" ui-sref="{{menu2.state}}" class="item tom-accordion">
                     <i ng-class="menu2.icon"></i> {{menu2.name}}
                 </li>
             </div>

@@ -1,12 +1,12 @@
 angular.module('app')
-    .controller('introductionController', function($scope, introductionService){
+    .controller('publicIntroductionCtrl', function($scope, publicIntroductionService){
 		// 初始化加载
-		introductionService.loading($scope);
+		publicIntroductionService.loading($scope);
 		$scope.doRefresh = function(){
-			introductionService.loading($scope);
+			publicIntroductionService.loading($scope);
 		};
 	})
-	.service('introductionService', function(HTTP){
+	.service('publicIntroductionService', function(HTTP){
 		// 初始化加载
 		this.loading = function(scope){
 			HTTP.send({

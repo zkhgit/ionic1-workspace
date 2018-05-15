@@ -126,7 +126,7 @@ angular.module('app.route', [])
                         'core/directive/patternLock.js'
                     ]
                 },
-                {// 表单验证配置
+                {// 表单验证
                     name:'validator', 
                     files:[
                         'component/validator/w5cValidator.css',

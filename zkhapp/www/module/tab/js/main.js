@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('mainController', function($scope, $cordovaToast, mainService, PATH){
+    .controller('mainCtrl', function($scope, $cordovaToast, mainService, PATH){
         // 初始化加载
         mainService.loading($scope);
         $scope.setIp = function(tomIp, port){

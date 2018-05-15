@@ -1,8 +1,8 @@
 angular.module('app')
-    .controller('formController', function($scope, formService){
-        formService.loading($scope);
+    .controller('demoFormCtrl', function($scope, demoFormService){
+        demoFormService.loading($scope);
     })
-    .service('formService', function(){
+    .service('demoFormService', function(){
         this.loading = function(scope){
             scope.vo = {
                 startDate:'2010-01-01',

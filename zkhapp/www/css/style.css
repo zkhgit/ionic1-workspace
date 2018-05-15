@@ -42,8 +42,8 @@ ion-header-bar span { font-size: 16px; /**color:grey;*/ }
 /** 1、边框 *************************************/
 
 /** 2、字体大小 *********************************/
-.font-size-12{ font-size: 16px; }
-.font-size-14{ font-size: 16px; }
+.font-size-12{ font-size: 12px; }
+.font-size-14{ font-size: 14px; }
 .font-size-16{ font-size: 16px; }
 .font-size-18{ font-size: 18px; }
 /** 2、字体大小 *********************************/
@@ -68,5 +68,59 @@ ion-header-bar span { font-size: 16px; /**color:grey;*/ }
 /** 7、图片、文字垂直居中 **********************/
 .imgtxt-align-middle *{ vertical-align:middle; }
 /** 7、图片、文字垂直居中 **********************/
+
+/** 8、页面底部提交按钮 ************************/
+.tom-bottom-button{
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    padding-top: 3px;
+    bottom: -5px;
+    background: white;
+}
+/** 8、页面底部提交按钮 ************************/
+
+
+/** 组件样式 --start--**************************************************/
+/** 1、栅栏（九宫格） --start--***************************/
+.tom-table{
+    width:100%;
+    text-align:center;
+    background:white;
+    font-size:13px;
+    font-family: '黑体';
+    border:none;
+    table-layout:fixed; /** fixed：列宽由表格宽度和列宽度设定，automatic：默认。列宽度由单元格内容设定。*/
+}
+.tom-table td{
+    height:80px;
+    vertical-align:middle;
+    border:1px solid #f0f0f0;
+}
+.tom-table td i{
+    font-size:24px;
+}
+.tom-table img{
+    width:32px;
+    height:32px;
+}
+/** 1、栅栏（九宫格） ---end-****************************/
+
+/** 2、手风琴菜单动画 --start--**************************/
+.list .item.tom-accordion {
+    height:50px;
+    line-height:50px;
+    padding:0 0 0 30px;
+    transition: 0.2s all ease-out;
+}
+.list .item.tom-accordion.ng-hide {
+    height: 0px;
+}
+.list .item.tom-accordion.ng-hide-add,
+.list .item.tom-accordion.ng-hide-remove {
+    display: block !important;
+}
+/** 2.手风琴菜单动画 --end--*****************************/
+/** 组件样式 --end--****************************************************/
 /** 自定义样式  --end--****************************************************************/
 /** 自定义样式  --end--****************************************************************/

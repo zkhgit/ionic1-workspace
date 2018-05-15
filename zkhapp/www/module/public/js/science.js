@@ -1,7 +1,7 @@
 angular.module('app')
-    .controller('scienceController', function($scope, scienceService, PAGE){
+    .controller('publicScienceCtrl', function($scope, publicScienceService, PAGE){
         // 初始化加载
-        scienceService.loading($scope);
+        publicScienceService.loading($scope);
         // 下拉刷新
         $scope.doRefresh = function(){
             PAGE.doRefresh($scope);
@@ -11,7 +11,7 @@ angular.module('app')
             PAGE.loadMore($scope);
         };
     })
-    .service('scienceService', function(PAGE){
+    .service('publicScienceService', function(PAGE){
         this.loading = function(scope){
             // 获取列表
             PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 103});

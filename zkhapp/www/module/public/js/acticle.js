@@ -1,9 +1,9 @@
 angular.module('app')
-	.controller('acticleController', function($scope, $stateParams, acticleService){
+	.controller('publicActicleCtrl', function($scope, $stateParams, publicActicleService){
 		// 初始化加载
-		acticleService.loading($scope, $stateParams.id);
+		publicActicleService.loading($scope, $stateParams.id);
 	})
-	.service('acticleService', function(HTTP, COMMON){
+	.service('publicActicleService', function(HTTP, COMMON){
 		// 初始化加载
 		this.loading = function(scope, id){
 			// 初始化参数配置
