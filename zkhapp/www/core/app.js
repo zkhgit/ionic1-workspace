@@ -148,6 +148,7 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             'ionic-native-transitions',
             'module-rotue',
             'page',
+            'ng-material-floating-button'
         ]);
     })();
 });
