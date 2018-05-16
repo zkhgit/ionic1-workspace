@@ -11,8 +11,10 @@ angular.module('app')
             $cordovaToast.showLongBottom('服务器设置成功');
         };
     })
-    .service('mainService', function(){
+    .service('mainService', function($rootScope){
         this.loading = function(scope){
-
+            scope.$on('$ionicView.afterEnter', function() {
+                $rootScope.mfbButton = false; // 显示浮动按钮
+            });
         };
     });

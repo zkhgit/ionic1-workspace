@@ -82,6 +82,10 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             $cordovaToast.showShortBottom("正在上传，请耐心等待！");
             return;
         }
+        // 手势解锁界面禁止右键
+        if(!$rootScope.patternLockModal){
+            return;
+        }
         // 关闭$ionicPopup
         if(!!$rootScope.tomIonicPopup){
             $rootScope.tomIonicPopup.close();

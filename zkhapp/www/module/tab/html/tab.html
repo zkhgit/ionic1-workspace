@@ -3,7 +3,7 @@
       <ion-nav-view name="main"></ion-nav-view>
   </ion-tab>
 </ion-tabs>
-<nav  ng-style="{display:'block'}" mfb-menu position="br" effect="zoomin" label="快捷菜单" active-icon="ion-minus-round" resting-icon="ion-plus-round" toggling-method="click">
+<nav style="display:none;" ng-style="{display:mfbButton==true?'block':'none'}" mfb-menu position="br" effect="zoomin" label="快捷菜单" active-icon="ion-minus-round" resting-icon="ion-plus-round" toggling-method="click">
     <button mfb-button ui-sref="tab.main" icon="ion-ios-home" label="主页"></button>
     <button mfb-button ui-sref="tab.demoLoading" icon="ion-load-d" label="加载动画"></button>
     <button mfb-button ui-sref="tab.demoForm" icon="ion-ios-list" label="表单一"></button>

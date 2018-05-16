@@ -20,9 +20,11 @@ angular.module('app')
 				'</div>',
 			link:function(scope, element, attrs, ctrls){
 				var oldPattern = CACHE.get('pattern');
-				var timer;
 				var options = {
 					onDraw:function(newPattern){
+						oldPattern = CACHE.get('pattern');
+						var timer;
+
 						if((newPattern+'').length<4){
 							scope.lock = {
 								title:'请至少输入4位密码',
@@ -54,6 +56,14 @@ angular.module('app')
 									$timeout.cancel(timer);
 									timer = $timeout(function(){
 										$rootScope.patternLockModal.hide();
+
+										// 解锁成功，重置当前手势图案
+										scope.lock = {
+											prevPattern:null,
+											title:'请输入手势密码解锁',
+											state:'stable'
+										};
+										patternLock.reset();
 									},1000);
 								}else{
 									scope.lock = {
@@ -68,7 +78,7 @@ angular.module('app')
 											title:'请输入手势密码解锁',
 											state:'stable'
 										};
-									},2000);
+									},1000);
 								}
 							}else{
 								if(scope.lock.prevPattern){
@@ -80,6 +90,15 @@ angular.module('app')
 											title:'密码设置成功',
 											state:'success'
 										};
+
+										// 设置成功，隐藏并重置当前手势图案
+										scope.lock = {
+											prevPattern:null,
+											title:'请输入手势密码解锁',
+											state:'stable'
+										};
+										patternLock.reset();
+										$rootScope.patternLockModal.hide();
 									}else{
 										scope.lock = {
 											prevPattern:null,
