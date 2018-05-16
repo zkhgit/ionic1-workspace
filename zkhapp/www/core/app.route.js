@@ -123,7 +123,7 @@ angular.module('app.route', [])
                     files:[
                         'component/patternLock/patternLock.css',
                         'component/patternLock/patternLock.min.js',
-                        'core/directive/patternLock.js'
+                        'core/directive/pattern-lock.js'
                     ]
                 },
                 {// 表单验证

@@ -12,9 +12,7 @@ angular.module('app.route')
                         resolve:{
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    'component/patternLock/patternLock.css',
-                                    'component/patternLock/patternLock.min.js',
-                                    'core/directive/pattern-lock.js',
+                                    'patternLock',
                                     'module/demo/js/main.js'
                                 ]);
                             }
@@ -33,7 +31,6 @@ angular.module('app.route')
                         resolve:{
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
-                                    'validator',
                                     'format',
                                     'ionic-rating',
                                     'core/directive/input-color.js',
@@ -60,7 +57,6 @@ angular.module('app.route')
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
                                     'ionic-datepicker',
-                                    'validator',
                                     'component/validator/demo/validator.js'
                                 ]);
                             }
@@ -117,6 +113,26 @@ angular.module('app.route')
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
                                     'module/demo/js/loading.js'
+                                ]);
+                            }
+                        }
+                    }
+                }
+            })
+            .state('tab.demoDownload', { // 文件下载
+                url: '/demo/downloa',
+                views: {
+                    'main': {
+                        controller:'demoDownloadCtrl',
+                        templateUrl:function(){
+                            return 'module/demo/html/download.html';
+                        },
+                        resolve:{
+                            load:function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    'core/service/mime.js',
+                                    'core/service/download.js',
+                                    'module/demo/js/download.js'
                                 ]);
                             }
                         }

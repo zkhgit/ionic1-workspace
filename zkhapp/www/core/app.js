@@ -48,13 +48,8 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
                 // StatusBar.overlaysWebView(true); // 使状态栏覆盖或不覆盖WebView（测试有用）
                 StatusBar.backgroundColorByHexString("#387ef5"); // 状态栏背景色（测试有用）
             }
-            // 设置键盘属性
-            if (Keyboard) {
-                Keyboard.hideFormAccessoryBar(true); // true：隐藏键盘顶部的附加工具栏。该工具栏具有Prev，Next和Done按钮
-                Keyboard.disableScroll(true);  // true：键盘不允许滚动
-            }
             // 设置下载文件存放路径
-            PATH.ionicFilePath = cordova.file.dataDirectory + '/ionic';
+            PATH.downloadFilePath = cordova.file.dataDirectory; // 使用内部存储器在应用程序的沙箱中进行持久性和私人数据存储(支持(iOS，Android，BlackBerry 10，Windows))
         }
         // 安卓右键返回时，延迟设置isVisible为false，防止第三方输入法返回退出当前页面  
         window.addEventListener('keyboardDidHide', function (e) {
@@ -145,14 +140,21 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
     /** 2、物理返回按钮控制&双击退出应用******************************************/
 
 })
-.controller('appController', function($scope,$ocLazyLoad){
+.controller('appController', function($scope,$ocLazyLoad, $timeout){
     $scope.ready = (function(){
         $ocLazyLoad.load([
             'animate',
             'ionic-native-transitions',
             'module-rotue',
             'page',
-            'ng-material-floating-button'
+            'ng-material-floating-button',
         ]);
+        
+        // 延迟表单验证的加载，解决validator无效问题
+        $timeout(function(){
+            $ocLazyLoad.load([
+                'validator'
+            ], 300);
+        });
     })();
 });

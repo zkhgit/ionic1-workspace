@@ -124,6 +124,20 @@ ion-header-bar span { font-size: 16px; /**color:grey;*/ }
     display: block !important;
 }
 /** 2.手风琴菜单动画 --end--*****************************/
+/** 3.文件下载动画 --start--*****************************/
+.progress{
+    transition: all .1s;
+    height:8px;
+    background-size: 20px 20px;
+    border-radius:4px;
+    background-color:#00aa00;
+    background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    animation: progress-bar-stripes 2s linear infinite;
+}
+@keyframes progress-bar-stripes{
+    from{background-position:40px 0}to{background-position:0 0}
+}
+/** 3.文件下载动画 --end--*******************************/
 /** 组件样式 --end--****************************************************/
 /** 自定义样式  --end--****************************************************************/
 /** 自定义样式  --end--****************************************************************/

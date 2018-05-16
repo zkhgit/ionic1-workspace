@@ -58,11 +58,11 @@ angular.module('common', [])
     /** value区 **************************************************************************************/
     .value('PATH', {
         // 下载文件存放位置
-        ionicFilePath: '',
-        IP: '192.168.0.24',
+        downloadFilePath: '',
+        IP: '192.168.191.1',
         PORT: '8080',
-        IP_PORT: 'http://192.168.0.24:8080',
-        DOMAIN_NAME: 'http://192.168.0.24:8080/kjtrzpt/'
+        IP_PORT: 'http://192.168.191.1:8080',
+        DOMAIN_NAME: 'http://192.168.191.1:8080/cepsp/'
     });
     /** value区 **************************************************************************************/
 
@@ -82,3 +82,13 @@ angular.module('common', [])
       * typeof(对象（包括{}）、数组（包括[]）、null)='object'
       * typeof(函数)='function'
       */
+
+    //   目录对应的android 真实目录。
+    //   console.log(cordova.file.externalApplicationStorageDirectory); //file:///storage/emulated/0/Android/data/com.bntake.driver.in/
+    //   console.log(cordova.file.dataDirectory); //file:///data/user/0/com.bntake.driver.in/files/
+    //   console.log(cordova.file.externalDataDirectory); //file:///storage/emulated/0/Android/data/com.bntake.driver.in/files/
+    //   console.log(cordova.file.externalRootDirectory);//file:///storage/emulated/0/
+    //   console.log(cordova.file.externalCacheDirectory); //file:///storage/emulated/0/Android/data/com.bntake.driver.in/cache/
+    //   console.log(cordova.file.applicationStorageDirectory); //file:///data/user/0/com.bntake.driver.in/
+    //   console.log(cordova.file.cacheDirectory); //file:///data/user/0/com.bntake.driver.in/cache/
+    //   console.log(cordova.file);  //object
