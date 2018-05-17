@@ -32,6 +32,7 @@ angular.module('app.route')
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
                                     'format',
+                                    'elastic',
                                     'ionic-rating',
                                     'core/directive/input-color.js',
                                     'core/directive/input-datetime.js',
@@ -163,11 +164,11 @@ angular.module('app.route')
                     }
                 }
             })
-            .state('tab.demoactionimgshow', { // 文件下载
+            .state('tab.demoActionimgshow', { // 文件下载
                 url: '/demo/actionimgshow',
                 views: {
                     'main': {
-                        controller:'actionimgshowCtrl',
+                        controller:'demoActionimgshowCtrl',
                         templateUrl:function(){
                             return 'module/demo/html/actionimgshow.html';
                         },
@@ -177,6 +178,29 @@ angular.module('app.route')
                                     return $ocLazyLoad.load([
                                         'action-img-show',
                                         'module/demo/js/actionimgshow.js'
+                                    ]);
+                                    
+                                } catch (error) {
+                                    alert(JSON.stringify(error));
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            .state('tab.demoWechat', { // 文件下载
+                url: '/demo/wechat',
+                views: {
+                    'main': {
+                        controller:'demoWechatCtrl',
+                        templateUrl:function(){
+                            return 'module/demo/html/wechat.html';
+                        },
+                        resolve:{
+                            load:function ($ocLazyLoad) {
+                                try {
+                                    return $ocLazyLoad.load([
+                                        'module/demo/js/wechat.js'
                                     ]);
                                     
                                 } catch (error) {

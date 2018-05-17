@@ -1,0 +1,137 @@
+相对时间的解决插件方案
+
+https://scotch.io/tutorials/display-time-relatively-in-angular
+
+https://github.com/urish/angular-moment
+
+在您的应用程序中包含moment.js和angular-moment.js。
+
+< script  src = “ components / moment / moment.js ” > </ script >
+< script  src = “ components / angular-moment / angular-moment.js ” > </ script >
+将该模块angularMoment作为依赖项添加到您的应用程序模块中：
+
+var myapp =  angular。模块（' myapp '，[ ' angularMoment ' ]）;
+如果您需要国际化支持，请在moment.js后加载指定的moment.js语言环境文件：
+
+< script  src = “ components / moment / moment.js ” > </ script >
+< script  src = “ components / moment / locale / de.js ” > </ script >
+< script  src = “ components / angular-moment / angular-moment.js ” > </ script >
+然后调用该amMoment.changeLocale()方法（例如，在您的应用程序的run（）回调中）：
+
+myapp。运行（函数（amMoment）{
+	 amMoment。changeLocale（'解'）;
+}）;
+用于控制器/服务/工厂
+将moment-constant注入到您的依赖注入中。例如：
+
+角度。模块（' fooApp '）
+    。控制器（' FooCtrl '，[ ' $范围'，'瞬间'，函数（$范围，时刻）{
+         $范围。exampleDate  =  力矩（）。小时（8）。分钟（0）。第二（0）。TODATE（ ）;
+    }]）;
+前一时间的指示
+使用该am-time-ago指令来格式化相对时间戳。例如：
+
+< span  am-time-ago = “ message.time ” > </ span >
+角度矩会动态更新范围以指示自消息创建以来经过了多长时间。所以，如果您的控制器包含以下代码：
+
+$范围。message  = {
+   文字： '你好，世界！'，
+   时间： 新 日期（）
+};
+用户最初将看到“几秒钟前”，大约一分钟后跨度将自动更新为“一分钟前”，等等。
+
+amParse过滤器
+将自定义格式的日期分析为可用于am-time-ago指令和其他过滤器的时刻对象。例如，以下代码将接受格式为“2015.04.25 22:00:15”的日期：
+
+< span  am-time-ago = “ message.time | amParse：'YYYY.MM.DD HH：mm：ss' ” > </ span >
+amFromUnix过滤器
+将一个unix时间戳（自1970年1月1日以来的秒数）转换为时刻对象。例：
+
+< span  am-time-ago = “ message.unixTime | amFromUnix ” >
+amUtc过滤器
+创建/切换当前时刻对象到UTC模式。例如，给定一个日期对象message.date，下面的代码将以UTC而不是本地时区显示时间：
+
+< span > {{message.date | amUtc | amDateFormat：'MM.DD.YYYY HH：mm：ss'}} </ span >
+amUtcOffset过滤器
+显示日期时使用给定的utc偏移量。例如，以下代码将显示UTC + 3小时时间偏移的日期：
+
+< span > {{message.date | amUtcOffset：'+ 0300'| amDateFormat：'MM.DD.YYYY HH：mm：ss'}} </ span >
+amLocal过滤器
+将给定时刻对象更改为当地时区。通常与amUtc/ amTimezone 用于时区转换一起使用。例如，以下内容会将给定的UTC日期转换为本地时间：
+
+< span > {{message.date | amUtc | amLocal | amDateFormat：'MM.DD.YYYY HH：mm：ss'}} </ span >
+amTimezone过滤器
+将时区应用于给定的日期/时刻对象。您需要moment-timezone.js在项目中加入并加载时区数据才能使用此过滤器。以下示例显示以色列时区中的时间：
+
+< span > {{message.date | amTimezone：'以色列'| amDateFormat：'MM.DD.YYYY HH：mm：ss'}} </ span >
+amDateFormat过滤器
+使用moment.js format（）方法格式化日期。例：
+
+< span > {{message.time | amDateFormat：'dddd，MMMM做YYYY，h：mm：ss a'}} </ span >
+这段代码会将给定时间格式化为“2013年10月7日星期一上午12点36分29秒”。
+
+有关Moment.JS格式化选项的更多信息，请参阅format（）函数的 文档。
+
+amCalendar过滤器
+使用moment.js calendar（）方法格式化日期。例：
+
+< span > {{message.time | amCalendar：referenceTime：格式}} </ span >
+这段代码会将给定的时间格式化为例如“Today 2:30 AM”或“Last Monday 2:30 AM”等。
+
+有关Moment.JS日历时间格式的更多信息，请参阅calendar（）函数的 文档。
+
+amDifference过滤器
+以毫秒为单位获取两个日期之间的差异。参数是日期，单位和usePrecision。日期默认为当前日期。例：
+
+< span >计划的{{message.createdAt | amDifference：null：'days'}}从现在开始</ span >
+该片段将返回当前日期和过滤日期之间的天数。
+
+有关Moment.JS差异函数的更多信息，请参阅diff（）函数的 文档。
+
+amDurationFormat过滤器
+以可读格式格式化持续时间（例如5天）。请参阅Moment.JS文档 以获取支持的持续时间格式列表，以及humanize() documentation 有关格式化算法的说明。
+
+例：
+
+< span >消息时间：{{message.ageInMinutes | amDurationFormat：'分钟'}} </ span >
+将显示信息的年龄（例如10分钟，1小时，2天等）。
+
+amSubtract过滤器
+从指定日期减去值（小时，分钟，秒......）。
+
+有关支持的持续时间格式的列表，请参阅Moment.JS文档。
+
+例：
+
+< span >开始时间：{{day.start | amSubtract：'1'：'小时'| amDateFormat：'hh'}}：{{day.start | amSubtract：'30'：'分钟'| amDateFormat：'mm'}} </ span >
+amAdd过滤器
+将值（小时，分钟，秒...）添加到指定的日期。
+
+有关支持的持续时间格式的列表，请参阅Moment.JS文档。
+
+例：
+
+< span >开始时间：{{day.start | amAdd：'1'：'小时'| amDateFormat：'hh'}}：{{day.start | amAdd：'30'：'分钟'| amDateFormat：'mm'}} </ span >
+amStartOf过滤器
+通过将其设置为单位的开始时间（分钟，小时，天）来改变原始时刻。
+
+有关支持的持续时间格式的列表，请参阅Moment.JS文档。
+
+例：
+
+< span > {{date | amStartOf：'月'| amLocal}} </ span >
+amEndOf过滤器
+通过将其设置为单位（分，小时，天......）的时间结束来改变原始时刻。
+
+有关支持的持续时间格式的列表，请参阅Moment.JS文档。
+
+例：
+
+< span > {{date | amEndOf：'month'| amLocal}} </ span >
+时区支持
+的amDateFormat和amCalendar过滤器可以被配置成显示对准到特定时区的日期。您可以使用以下语法配置时区：
+
+角度。模块（' myapp '）。常量（' angularMomentConfig '，{
+    时区： ' 时区名称' //例如'Europe / London' 
+}）;
+请记住moment-timezone.js在您的项目中包含v0.3.0或更高版本，否则自定义时区功能将不可用。您还需要包含一个可以使用Timezone Data Builder创建的时区数据文件， 或者从这里下载。

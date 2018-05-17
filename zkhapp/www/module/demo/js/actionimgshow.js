@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('actionimgshowCtrl', function($scope, actionImgShow){
+    .controller('demoActionimgshowCtrl', function($scope, actionImgShow){
         var allimgs = [
             {
                 imgsrc: 'img/common/avatar.png'

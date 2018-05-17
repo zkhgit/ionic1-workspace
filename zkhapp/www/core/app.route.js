@@ -20,10 +20,41 @@ angular.module('app.route', [])
                 /** css动画样式 *****************************************************************/
 
                 /** core/directive指令 *********************************************************/
+                {// 头部导航栏或者底部使用icon图标时点击产生一种圆形的涟漪放大效果
+                    name:'icon-click-round-ripple',
+                    files:[
+                        'core/directive/icon-click-round-ripple.js',
+                    ]
+                },
+                {// 实现评论、评分的功能
+                    name:'ionic-ratings',
+                    files:[
+                        'core/directive/ionic-ratings.js',
+                    ]
+                },
                 {// ion-item点击产生涟漪水波效果的样式
                     name:'item-click-ripple',
                     files:[
                         'core/directive/item-click-ripple.js',
+                    ]
+                },
+                {// 自动适应textarea输入框的高度，监听taResize事件
+                    name:'resize-foot-bar',
+                    files:[
+                        'component/elastic/elastic.js',
+                        'core/directive/resize-foot-bar.js',
+                    ]
+                },
+                {// 自定义tabs中心tab标签的icon，并且可以设置大小和颜色
+                    name:'tab-center-icon',
+                    files:[
+                        'core/directive/tab-center-icon.js',
+                    ]
+                },
+                {// 应用于tabs图标的红点信息提醒
+                    name:'tab-red-point',
+                    files:[
+                        'core/directive/tab-red-point.js',
                     ]
                 },
                 /** core/directive指令 *********************************************************/
@@ -86,11 +117,24 @@ angular.module('app.route', [])
                         'component/angular-tree-control/js/angular-tree-control.js',
                     ]
                 },
+                {// textarea框自动换行以及自动高度
+                    name:'elastic', 
+                    files:[
+                        'component/elastic/elastic.js'
+                    ]
+                },
                 {// 图表
                     name:'chart', 
                     files:[
                         'component/chart/Chart.min.js',
                         'component/chart/angular-chart.js'
+                    ]
+                },
+                {// banner小提示的组件
+                    name:'ionic-banner-tips', 
+                    files:[
+                        'component/ionic-banner-tips/ionic-banner-tips.css',
+                        'component/ionic-banner-tips/ionic-banner-tips.js'
                     ]
                 },
                 {// 日期选择控件

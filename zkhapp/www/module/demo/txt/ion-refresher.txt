@@ -1,0 +1,132 @@
+来源：https://blog.csdn.net/u012979009/article/details/53158316
+
+
+那么我们该如何修改呢?
+(1)首先在ionic.bundle.js中，找到ionicRefresher这个指令所在地方，这个指令代码如下：
+
+.directive('ionRefresher', [function() {  
+  return {  
+    restrict: 'E',  
+    replace: true,  
+    require: ['?^$ionicScroll', 'ionRefresher'],  
+    controller: '$ionicRefresher',  
+    template:  
+    '<div class="scroll-refresher invisible" collection-repeat-ignore>' +  
+      '<div class="ionic-refresher-content" ' +  
+      'ng-class="{\'ionic-refresher-with-text\': pullingText || refreshingText}">' +  
+        '<div class="icon-pulling" ng-class="{\'pulling-rotation-disabled\':disablePullingRotation}">' +  
+          '<i class="icon {{pullingIcon}}" style="color:{{pullingIconColor}}"></i>' +  
+        '</div>' +  
+        '<div class="text-pulling" ng-bind-html="pullingText"></div>' +  
+        '<div class="icon-refreshing">' +  
+          '<ion-spinner ng-if="showSpinner" icon="{{spinner}}"></ion-spinner>' +  
+          '<i ng-if="showIcon" class="icon {{refreshingIcon}}" style="color:{{refreshingIconColor}}"></i>' +  
+        '</div>' +  
+        '<div class="text-refreshing" ng-bind-html="refreshingText"></div>' +  
+      '</div>' +  
+    '</div>',  
+    link: function($scope, $element, $attrs, ctrls) {  
+  
+      // JS Scrolling uses the scroll controller  
+      var scrollCtrl = ctrls[0],  
+          refresherCtrl = ctrls[1];  
+      if (!scrollCtrl || scrollCtrl.isNative()) {  
+        // Kick off native scrolling  
+        refresherCtrl.init();  
+      } else {  
+        $element[0].classList.add('js-scrolling');  
+        scrollCtrl._setRefresher(  
+          $scope,  
+          $element[0],  
+          refresherCtrl.getRefresherDomMethods()  
+        );  
+  
+        $scope.$on('scroll.refreshComplete', function() {  
+          $scope.$evalAsync(function() {  
+            scrollCtrl.scrollView.finishPullToRefresh();  
+          });  
+        });  
+      }  
+  
+    }  
+  };  
+}]);
+
+红色是我们添加代码
+
+我们在'<i class="icon {{pullingIcon}}"></i>' 添加style="color:{{pullingIconColor}}"，变成
+<i class="icon {{pullingIcon}}" style="color:{{pullingIconColor}}"></i>
+
+在<i ng-if="showIcon" class="icon {{refreshingIcon}}"></i>中添加style="color:{{refreshingIconColor}}"，最终变成<i ng-if="showIcon" class="icon {{refreshingIcon}}" style="color:{{refreshingIconColor}}"></i>
+
+
+(2)再找到$ionicRefresher这个控制器，代码如下：
+.controller('$ionicRefresher', [  
+  '$scope',  
+  '$attrs',  
+  '$element',  
+  '$ionicBind',  
+  '$timeout',  
+  function($scope, $attrs, $element, $ionicBind, $timeout) {  
+    var self = this,  
+        isDragging = false,  
+        isOverscrolling = false,  
+        dragOffset = 0,  
+        lastOverscroll = 0,  
+        ptrThreshold = 60,  
+        activated = false,  
+        scrollTime = 500,  
+        startY = null,  
+        deltaY = null,  
+        canOverscroll = true,  
+        scrollParent,  
+        scrollChild;  
+  
+    if (!isDefined($attrs.pullingIcon)) {  
+      $attrs.$set('pullingIcon', 'ion-android-arrow-down');  
+    }  
+  
+    if (!isDefined($attrs.refreshingIconColor)) {  
+      $attrs.$set('refreshingIconColor', 'none');  
+    }  
+  
+    if (!isDefined($attrs.refreshingIconColor)) {  
+      $attrs.$set('pullingIconColor', 'none');  
+    }  
+
+    $scope.showSpinner = !isDefined($attrs.refreshingIcon) && $attrs.spinner != 'none';  
+  
+    $scope.showIcon = isDefined($attrs.refreshingIcon);  
+  
+    $ionicBind($scope, $attrs, {  
+      pullingIcon: '@',  
+      pullingIconColor: '@',  
+      pullingText: '@',  
+      refreshingIcon: '@',  
+      refreshingIconColor: '@',  
+      refreshingText: '@',  
+      spinner: '@',  
+      disablePullingRotation: '@',  
+      $onRefresh: '&onRefresh',  
+      $onPulling: '&onPulling'  
+    });  
+
+
+添加了一下代码
+if (!isDefined($attrs.refreshingIconColor)) {
+      $attrs.$set('refreshingIconColor', 'none');
+    }
+
+    if (!isDefined($attrs.refreshingIconColor)) {
+      $attrs.$set('pullingIconColor', 'none');
+    }
+同时还的添加
+pullingIconColor: '@',
+disablePullingRotation: '@',
+代表获取指令属性内的值
+那么在我们的html页面中可以这样使用
+
+<ion-refresher pulling-text="下拉刷新..." pulling-icon-color="red" on-refresh="doRefresh()" refreshing-icon="ion-checkmark-circled" refreshing-icon-color="green" refreshing-text="成功更新20信息"></ion-refresher>
+
+注意其中红色部分，即是设置的颜色值
+至此整个修改过程就完成了

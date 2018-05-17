@@ -19,6 +19,7 @@ angular.module('app.route')
                         resolve:{
                             load:function ($ocLazyLoad) {
                                 return $ocLazyLoad.load([
+                                    'ionic-banner-tips',
                                     'module/tab/js/main.js'
                                 ]);
                             }
