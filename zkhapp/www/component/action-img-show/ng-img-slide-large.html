@@ -1,0 +1,16 @@
+<div class="action-img-backdrop active" ng-click="imgClose()">
+          <div class="img-sheet-wrapper large-img-group">
+              <ion-slide-box class="img-slide-box" show-pager="false" active-slide="imgActiveSlide" delegate-handle="slide-imgs-large" on-slide-changed="slideImgChange($index)">
+              <ion-slide class="img-slide" img-show ng-repeat="largeImg in larImgs">
+              </ion-slide> 
+              </ion-slide-box>
+          </div>
+          <div class="bar bar-footer img-bar-footer">
+              <div class="row">
+                <div class="col"></div>
+                <div class="col text-center" style="color:#ffffff">{{currentLargeImg}}/{{::imgsNum}}</div>
+                <div class="col"></div>
+              </div>
+                <!-- <div class="col" style="color:#ffffff">保存图片</div> -->
+          </div>             
+      </div>

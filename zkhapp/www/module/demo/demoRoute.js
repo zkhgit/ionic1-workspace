@@ -138,6 +138,54 @@ angular.module('app.route')
                         }
                     }
                 }
+            })
+            .state('tab.demoCitypicker', { // 文件下载
+                url: '/demo/citypicker',
+                views: {
+                    'main': {
+                        controller:'demoCitypickerCtrl',
+                        templateUrl:function(){
+                            return 'component/ionic-pickcity/demo/citypicker.html';
+                        },
+                        resolve:{
+                            load:function ($ocLazyLoad) {
+                                try {
+                                    return $ocLazyLoad.load([
+                                        'ionic-pickcity',
+                                        'component/ionic-pickcity/demo/citypicker.js'
+                                    ]);
+                                    
+                                } catch (error) {
+                                    alert(JSON.stringify(error));
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            .state('tab.demoactionimgshow', { // 文件下载
+                url: '/demo/actionimgshow',
+                views: {
+                    'main': {
+                        controller:'actionimgshowCtrl',
+                        templateUrl:function(){
+                            return 'module/demo/html/actionimgshow.html';
+                        },
+                        resolve:{
+                            load:function ($ocLazyLoad) {
+                                try {
+                                    return $ocLazyLoad.load([
+                                        'action-img-show',
+                                        'module/demo/js/actionimgshow.js'
+                                    ]);
+                                    
+                                } catch (error) {
+                                    alert(JSON.stringify(error));
+                                }
+                            }
+                        }
+                    }
+                }
             });
     });
 

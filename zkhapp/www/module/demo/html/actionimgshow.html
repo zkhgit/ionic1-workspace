@@ -1,0 +1,14 @@
+
+<ion-view>
+    <ion-nav-bar class="bar-positive light">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-title>图片查看器</ion-nav-title>
+    </ion-nav-bar>
+
+    <!-- 图片查看器 -->
+    <ion-content class="text-center" overflow-scroll="false" has-bouncing="true"> 
+
+        <img style="margin-top:40px;" ng-src="{{imgs[1].imgsrc}}" ng-click="onDoubleTap(1)">
+
+    </ion-content>
+</ion-view>

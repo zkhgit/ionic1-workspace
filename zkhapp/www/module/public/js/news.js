@@ -25,8 +25,7 @@ angular.module('app')
                     }
                   },
                 ]
-              });
-            
+              });            
         };
     })
     .service('publicNewsService', function(PAGE){
@@ -34,4 +33,4 @@ angular.module('app')
             // 获取列表
             PAGE.isRefresh(scope, 'app/cms/list', true, {categoryId: 203});
         };
-    })
+    });

@@ -1,0 +1,24 @@
+<!--用法
+为了将Tabs与现有的SlideBox一起使用，请将ion-slide-tabs Attribute添加到ion-slide-box Element。要命名标签，您应该将属性ion-slide-tab-label ="yourLabel”添加到幻灯片的幻灯片中。您可以粘贴标签的任何HTML。
+
+例：-->
+<!--API
+    slide-tabs-scrollable [boolean] 选项卡应该可滚动（true）或填充视口宽度（false）。如果错误，每个选项卡将具有相同的大小。
+-->
+
+<ion-content  scroll = "false">
+    <ion-slide-box  show-pager = "false"  ion-slide-tabs>
+        <ion-slide  ion-slide-tab-label = "test"> <h1> Tab 1 </h1> </ion-slide>
+        <ion-slide  ion-slide-tab-label = "secondTest"> <h1> Tab 2 </h1> </ion-slide>
+        <ion-slide  ion-slide-tab-label = "<b> boldTest </b>"> <h1> Tab 3 </h1> </ion-slide>
+    </ion-slide-box>
+</ion-content>
+除了基于一些商家之外，为了实现滚动的内容，但幻灯片标签固定在顶部，所以我们可以做到这一点
+
+<ion-content  scroll = "false">
+    <ion-slide-box  show-pager = "false"  ion-slide-tabs>
+        <ion-slide  ion-slide-tab-label = "test"> <ion-content  scroll = "true"> Tab 1 </ion-content> </ion-slide>
+        <ion-slide  ion-slide-tab-label = "secondTest"> <ion-content  scroll = "true"> Tab 2 </ion-content> </ion-slide>
+        <ion-slide  ion-slide-tab-label = "<b> boldTest </b>"> <ion-content  scroll = "true"> Tab 3 </ion-content> </ion-slide>
+    </ion-slide-box>
+</ion-content>

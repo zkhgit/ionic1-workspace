@@ -11,48 +11,56 @@ angular.module('app.route', [])
         $ocLazyLoadProvider.config({
             modules:[
                 /** css动画样式 *****************************************************************/
-                {
-                    name:'animate', // 动画 --https://daneden.github.io/animate.css
+                {// 动画 --https://daneden.github.io/animate.css
+                    name:'animate',
                     files:[
                         'css/animate.css'
                     ]
                 },
                 /** css动画样式 *****************************************************************/
 
+                /** core/directive指令 *********************************************************/
+                {// ion-item点击产生涟漪水波效果的样式
+                    name:'item-click-ripple',
+                    files:[
+                        'core/directive/item-click-ripple.js',
+                    ]
+                },
+                /** core/directive指令 *********************************************************/
 
                 /** core/service服务 ***********************************************************/
-                {
-                    name:'download', // 文件下载
+                {// 文件下载
+                    name:'download',
                     files:[
                         'core/service/download.js',
                     ]
                 },
-                {
-                    name:'exitApp', // 退出（并注销）登录
+                {// 退出（并注销）登录
+                    name:'exitApp',
                     files:[
                         'core/service/exitApp.js',
                     ]
                 },
-                {
-                    name:'format', // 时间格式化
+                {// 时间格式化
+                    name:'format',
                     files:[
                         'core/service/format.js',
                     ]
                 },
-                {
-                    name:'jsonSort', // json数组排序
+                {// json数组排序
+                    name:'jsonSort',
                     files:[
                         'core/service/jsonSort.js',
                     ]
                 },
-                {
-                    name:'mime', // 获得文件后缀名
+                {// 获得文件后缀名
+                    name:'mime',
                     files:[
                         'core/service/mime.js',
                     ]
                 },
-                {
-                    name:'page', // 分页
+                {// 分页
+                    name:'page',
                     files:[
                         'core/service/page.js',
                     ]
@@ -61,6 +69,15 @@ angular.module('app.route', [])
 
 
                 /** component组件 ***************************************************************/
+                {// AngularJS树组件
+                    name:'action-img-show',
+                    files:[
+                        'component/action-img-show/imgshow.css',
+                        'component/action-img-show/hammer.min.js',
+                        'component/action-img-show/angular.hammer.js',
+                        'component/action-img-show/action-img-show.js',
+                    ]
+                },
                 {// AngularJS树组件
                     name:'angular-tree-control',
                     files:[
@@ -83,11 +100,18 @@ angular.module('app.route', [])
                         'component/ionic-datepicker/config.js'
                     ]
                 },
-                {// 原生页面切换效果
+                {// 原生页面切换效果配置文件
                     name:'ionic-native-transitions', 
                     files:[
-                        // 'component/ionic-native-transitions/ionic-native-transitions.min.js',
                         'component/ionic-native-transitions/config.js'
+                    ]
+                },
+                {// 选择城市区域的组件
+                    name:'ionic-pickcity', 
+                    files:[
+                        'component/ionic-pickcity/ionic-pickcity.css',
+                        'component/ionic-pickcity/ionic-pickcity-service.js',
+                        'component/ionic-pickcity/ionic-pickcity.js'
                     ]
                 },
                 {// 评价五颗星星

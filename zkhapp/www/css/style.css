@@ -123,8 +123,8 @@ ion-header-bar span { font-size: 16px; /**color:grey;*/ }
 .list .item.tom-accordion.ng-hide-remove {
     display: block !important;
 }
-/** 2.手风琴菜单动画 --end--*****************************/
-/** 3.文件下载动画 --start--*****************************/
+/** 2、手风琴菜单动画 --end--****************************/
+/** 3、文件下载动画 --start--****************************/
 .progress{
     transition: all .1s;
     height:8px;
@@ -137,7 +137,28 @@ ion-header-bar span { font-size: 16px; /**color:grey;*/ }
 @keyframes progress-bar-stripes{
     from{background-position:40px 0}to{background-position:0 0}
 }
-/** 3.文件下载动画 --end--*******************************/
+/** 3、文件下载动画 --end--******************************/
+/** 4、item点击产生涟漪水波效果的样式 --end--*************/
+.item-ripple {
+    display: block; 
+    position: absolute;
+    background: hsla(0, 0%, 65%, 0.66);
+    border-radius: 90%;
+    transform: scale(0); 
+}
+.item-ripple.animate {
+  animation: itemripple 0.50s linear;
+}
+@-webkit-keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+}
+@keyframes itemripple {
+  100% {opacity: 0; transform: scale(1.5);}
+}
+/** 4、item点击产生涟漪水波效果的样式 --end--*************/
 /** 组件样式 --end--****************************************************/
 /** 自定义样式  --end--****************************************************************/
 /** 自定义样式  --end--****************************************************************/

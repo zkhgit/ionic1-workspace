@@ -40,7 +40,7 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             if (window.StatusBar) {
                 // android>6.0
                 // StatusBar.styleDefault(); // 状态栏默认样式，也就是电池信号黑色；（测试有用）
-                 StatusBar.styleLightContent(); // 状态栏内容浅色，貌似就是白色，适合深色背景；  
+                StatusBar.styleLightContent(); // 状态栏内容浅色，貌似就是白色，适合深色背景；  
                 // StatusBar.styleBlackTranslucent(); // 状态栏黑色半透明，电池时间都是白色的，适合深色背景；  
                 // StatusBar.styleBlackOpaque(); // 状态栏黑色不透明，还是白色的，适合深色背景；  
                 // StatusBar.hide(); // 状态栏隐藏（测试有用）；  
@@ -95,7 +95,6 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
         // 终止Ajax请求
         if(!!$rootScope.httpStop){
             HTTP.shutdown(102); // 终止请求
-            return;
         }
         // 判断处于哪个页面时双击退出
         if($location.path() == '/tab/main') {
@@ -146,8 +145,9 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             'animate',
             'ionic-native-transitions',
             'module-rotue',
-            'page',
             'ng-material-floating-button',
+            'item-click-ripple',
+            'page'
         ]);
         
         // 延迟表单验证的加载，解决validator无效问题
