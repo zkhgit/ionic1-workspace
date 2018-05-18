@@ -150,15 +150,10 @@ angular.module('app.route')
                         },
                         resolve:{
                             load:function ($ocLazyLoad) {
-                                try {
-                                    return $ocLazyLoad.load([
-                                        'ionic-pickcity',
-                                        'component/ionic-pickcity/demo/citypicker.js'
-                                    ]);
-                                    
-                                } catch (error) {
-                                    alert(JSON.stringify(error));
-                                }
+                                return $ocLazyLoad.load([
+                                    'ionic-pickcity',
+                                    'component/ionic-pickcity/demo/citypicker.js'
+                                ]);
                             }
                         }
                     }
@@ -174,38 +169,46 @@ angular.module('app.route')
                         },
                         resolve:{
                             load:function ($ocLazyLoad) {
-                                try {
-                                    return $ocLazyLoad.load([
-                                        'action-img-show',
-                                        'module/demo/js/actionimgshow.js'
-                                    ]);
-                                    
-                                } catch (error) {
-                                    alert(JSON.stringify(error));
-                                }
+                                return $ocLazyLoad.load([
+                                    'action-img-show',
+                                    'module/demo/js/actionimgshow.js'
+                                ]);
                             }
                         }
                     }
                 }
             })
-            .state('tab.demoWechat', { // 文件下载
-                url: '/demo/wechat',
+            .state('tab.demoChart', { // 文件下载
+                url: '/demo/chart',
                 views: {
                     'main': {
-                        controller:'demoWechatCtrl',
+                        controller:'demoChartCtrl',
                         templateUrl:function(){
-                            return 'module/demo/html/wechat.html';
+                            return 'module/demo/html/chart.html';
                         },
                         resolve:{
                             load:function ($ocLazyLoad) {
-                                try {
-                                    return $ocLazyLoad.load([
-                                        'module/demo/js/wechat.js'
-                                    ]);
-                                    
-                                } catch (error) {
-                                    alert(JSON.stringify(error));
-                                }
+                                return $ocLazyLoad.load([
+                                    'module/demo/js/chart.js'
+                                ]);
+                            }
+                        }
+                    }
+                }
+            })
+            .state('tab.demoContacts', { // 文件下载
+                url: '/demo/contacts',
+                views: {
+                    'main': {
+                        controller:'demoContactsCtrl',
+                        templateUrl:function(){
+                            return 'module/demo/html/contacts.html';
+                        },
+                        resolve:{
+                            load:function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    'module/demo/js/contacts.js'
+                                ]);
                             }
                         }
                     }

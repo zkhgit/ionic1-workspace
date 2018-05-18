@@ -29,7 +29,7 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
     /** 2、其他*******************************************/
 })
 /** 在config之后加载 */
-.run(function($ionicPlatform, $q, $ionicLoading, $rootScope, $location, $cordovaToast, $ionicHistory, $timeout, PATH, HTTP) {
+.run(function($ionicPlatform, $q, $ionicModal, $ionicLoading, $rootScope, $location, $cordovaToast, $ionicHistory, $timeout, PATH, HTTP) {
     /** 1、设备准备就绪，自定义基本配置基本属性**************************************************************/
     $ionicPlatform.ready(function() {
         // cordova插件准备就绪（手机环境）
@@ -78,7 +78,8 @@ angular.module('app', ['ionic','oc.lazyLoad','app.route','ngCordova','ionic-nati
             return;
         }
         // 手势解锁界面禁止右键
-        if(!$rootScope.patternLockModal){
+        if(!!$rootScope.patternLockModal && $rootScope.patternLockModal.isShown()){ // 这里是isShown()
+            $cordovaToast.showShortBottom("请解锁！");
             return;
         }
         // 关闭$ionicPopup

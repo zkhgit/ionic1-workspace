@@ -56,6 +56,21 @@ angular.module('app')
                             icon:'ion-ios-list'
                         }
                     ]
+                },
+                {
+                    name:'图片图表',
+                    menus:[
+                        {
+                            name:'图片查看器',
+                            state:'tab.demoActionimgshow',
+                            icon:'ion-android-image'
+                        },
+                        {
+                            name:'图表',
+                            state:'tab.demoChart',
+                            icon:'ion-stats-bars'
+                        }
+                    ]
                 }
             ];
         };

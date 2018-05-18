@@ -14,6 +14,7 @@ angular.module('app')
             animation:'slide-in-up'
         }).then(function(modal){
             $rootScope.modalHeight = screen.height;
+            $rootScope.patternLockModal = modal;
             $rootScope.hidePatternLock = function(){
                 modal.hide();
             };
@@ -24,11 +25,13 @@ angular.module('app')
                     buttons: [
                         {
                             text: '取消',
-                            type: SETTING.buttonColor
+                            type: SETTING.buttonColor,
+                            onTap: function(){
+                                $rootScope.patternLockModal.hide();
+                            }
                         }
                     ]
                 });
             };
-            $rootScope.patternLockModal = modal;
         });
     });

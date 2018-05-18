@@ -20,19 +20,13 @@ angular.module('app.route', [])
                 /** css动画样式 *****************************************************************/
 
                 /** core/directive指令 *********************************************************/
-                {// 头部导航栏或者底部使用icon图标时点击产生一种圆形的涟漪放大效果
-                    name:'icon-click-round-ripple',
-                    files:[
-                        'core/directive/icon-click-round-ripple.js',
-                    ]
-                },
                 {// 实现评论、评分的功能
                     name:'ionic-ratings',
                     files:[
                         'core/directive/ionic-ratings.js',
                     ]
                 },
-                {// ion-item点击产生涟漪水波效果的样式
+                {// ion-item等点击产生涟漪水波效果的样式
                     name:'item-click-ripple',
                     files:[
                         'core/directive/item-click-ripple.js',
@@ -123,11 +117,18 @@ angular.module('app.route', [])
                         'component/elastic/elastic.js'
                     ]
                 },
-                {// 图表
+                {// 图表1 -- 简单封装
                     name:'chart', 
                     files:[
                         'component/chart/Chart.min.js',
                         'component/chart/angular-chart.js'
+                    ]
+                },
+                {// 图表2 -- 封装良好，可直接用（参数只要宽、高、一个数组就行）
+                    name:'echarts', 
+                    files:[
+                        'component/echarts/echarts-all.js',
+                        'core/directive/echarts.js',
                     ]
                 },
                 {// banner小提示的组件

@@ -98,7 +98,6 @@ angular.module('app')
 											state:'stable'
 										};
 										patternLock.reset();
-										$rootScope.patternLockModal.hide();
 									}else{
 										scope.lock = {
 											prevPattern:null,
