@@ -39,3 +39,12 @@ ionic cordova run android 或 cordova run android
 
 // 查看ionic版本
 ionic -v  
+
+// 安装cordova自定义插件
+npm install -g plugman
+
+// 创建自定义插件
+plugman   create    --name  [插件名字]    --plugin_id    [插件id] 
+
+// 自制一个package.json文件
+cd 到插件路径下，plugman createpackagejson  [插件路径] 
