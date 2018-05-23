@@ -7,6 +7,8 @@
 
     <ion-content class="padding" overflow-scroll="false" has-bouncing="true">
         <h5>基础树</h5>
+        <button class="button" ng-click="addRoot()">添加一级目录</button>
+        <button class="button" ng-click="addChildToSecondRoot()">添加二级目录</button>
         <!-- order-by="order"：排序通过$scope.order='age'，reverse-order="false"：正序排，true：倒序排 -->
         <!-- filter-expression="predicate"：过滤器公式， filter-comparator="comparator"：是否完全匹配(大小写) -->
         <treecontrol class="tree-classic" tree-model="dataForTheTree" options="options"

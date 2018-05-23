@@ -97,6 +97,15 @@ angular.module('app')
                 ]  
             }  
         ];    
+
+        // 动态在主枝干添加
+        $scope.addRoot = function() {
+            $scope.dataForTheTree.push({name: "New Root", orgId:"some id", children: []})
+        };
+        // 动态在树枝出添加
+        $scope.addChildToSecondRoot = function() {
+            $scope.dataForTheTree[0].children.push({name: "New Child", orgId:"some id", children: []})
+        };
     })
     .service('demoTreeService', function(){
         this.loading = function(scope){
